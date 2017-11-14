@@ -1,0 +1,35 @@
+<section><h1 class="title">d3.js</h1></h1></section>
+
+<section class="full white" data-background="url(md/05_d3-intro/d3_1.png)">
+  <a class="source" href="https://d3js.org" target="_blank"><p>d3.js</p></a>
+</section>
+
+
+
+<section class="full white" data-background="url(md/05_d3-intro/d3_2.png)">
+  <a class="source" href="https://github.com/d3/d3" target="_blank"><p>https://github.com/d3/d3</p></a>
+</section>
+
+
+
+<section class="full white" data-background="url(md/05_d3-intro/mike.jpg)">
+  <a class="source" href="https://twitter.com/mbostock" target="_blank"><p>https://twitter.com/mbostock</p></a>
+  <aside class="notes">What we're about to do is a deep dive into the mind of this person: Mike Bostock.</aside>
+</section>
+
+<section>
+  <p>d3.js follows the <b>declarative approach</b> - it talks about the <i>What</i>, not the <i>How</i>.</p>
+</section>
+
+<section># Code test
+<pre>
+<code data-trim data-noescape>
+d3.selectAll('circle')
+  .data(data)
+  .enter()
+    .append('circle')
+    .attr('cx', function(d){
+      return d.x;
+    });
+</code></pre>
+</section>

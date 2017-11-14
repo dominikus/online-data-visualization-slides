@@ -1,0 +1,118 @@
+<section>
+    <h1 class="title">
+  SIMPLE<br>
+  ONLINE<br>
+  CHARTS<br>
+  </h1>
+</section>
+
+<section>
+<h3>Public datasets</h3>
+<a href="https://github.com/caesar0301/awesome-public-datasets" target="_blank"><p>Awesome Public Datasets (github)</p></a>
+<a href="https://www.kaggle.com/datasets" target="_blank"><p>Kaggle Datasets</p></a>
+<a href="https://twitter.com/cooldatasets" target="_blank"><p>Cool Datasets (twitter)</p></a>
+<a href="http://data.europa.eu/euodp/en/home" target="_blank"><p>EU OpenData Portal</p></a>
+</section>
+
+<!-- RAWGraphs -->
+<section><h1>RAWGraphs</h1></section>
+<section class="full white" data-background="url(md/04_simple-charts/RAW.png)">
+  <a class="source" href="http://rawgraphs.io/" target="_blank"><p>http://rawgraphs.io/</p></a>
+</section>
+
+<section class="full-vertical white" data-background="url(md/04_simple-charts/RAW2.png)">
+  <a class="source" href="http://rawgraphs.io/" target="_blank"><p>http://rawgraphs.io/</p></a>
+  <aside class="notes">Play around with the sample datasets in Raw</aside>
+</section>
+
+<!-- Datawrapper -->
+<section><h1>Datawrapper</h1></section>
+
+<section class="full white" data-background="url(md/04_simple-charts/datawrapper.png)">
+  <a class="source" href="http://www.datawrapper.de/" target="_blank"><p>http://datawrapper.de/</p></a>
+  <aside class="notes">First, example iPhone dataset, then the BMW dataset</aside>
+</section>
+
+<section>  <h1>Let's try some real data...</h1>
+</section>  
+
+<section class="full-vertical black" data-background="url(md/04_simple-charts/eu-data-portal.png)">  <a class="source" href="http://data.europa.eu/euodp/en/home" target="_blank"><p>http://data.europa.eu/euodp/en/home</p></a>
+  <aside class="notes">
+    1. Change in Unemployment 2008-2014 (http://data.europa.eu/euodp/en/data/dataset/change-in-unemployment-2008-2013) => CSV
+    2. Direct upload to Datawrapper
+    3. Bar Chart
+    4. Publish & Embed
+    5. Extend in Excel ("NUTS SHORT": =Left(A1, 2))
+    6. Split Bars, Refine: Customize Axes, Groups: "NUTS SHORT"
+    7. Go back to datawrapper.de
+    8. Make a map
+  </aside>
+</section>
+
+<!-- dataviz libraries -->
+<section><h1>Dataviz libraries</h1></section>
+
+<section class="full white" data-background="url(md/04_simple-charts/awesome-charting.png)">
+  <a class="source" href="https://github.com/zingchart/awesome-charting" target="_blank"><p>https://github.com/zingchart/awesome-charting</p></a>
+</section>
+
+<section>
+    <h3>Problems with dataviz libraries:</h3>
+    <ul>
+      <li class="fragment">Flexibility</li>
+      <li class="fragment">Ugly/non-functional defaults</li>
+      <li class="fragment">Longevity</li>
+      <li class="fragment"><b>Documentation</b></li>
+    <ul>
+  </section>
+
+<!-- Taucharts -->
+
+<section><h1>Taucharts</h1></section>
+
+<section class="full white" data-background="url(md/04_simple-charts/taucharts.png)">
+  <a class="source" href="https://www.taucharts.com/
+  " target="_blank"><p>https://www.taucharts.com/
+    </p></a>
+</section>
+
+<section>
+  <h3>Taucharts Basics</h3>
+  <pre><code>
+<script
+ src="https://cdn.jsdelivr.net/d3js/3.5.17/d3.min.js"
+ charset="utf-8"></script>
+<script
+ src="https://cdn.jsdelivr.net/npm/taucharts@1/build/production/tauCharts.min.js"
+ type="text/javascript"></script>
+
+<link rel="stylesheet" type="text/css"
+ href="https://cdn.jsdelivr.net/npm/taucharts@1/build/production/tauCharts.min.css">
+  </code></pre>
+</section>
+
+<section>
+  <h3>Taucharts Basics II</h3>
+  <pre><code>var chart = new tauCharts.Chart({
+      data: defData,
+      type: 'bar',
+      x: 'date',
+      y: 'count',
+      color: 'type'
+  });
+  
+  chart.renderTo('#chart');</code></pre>
+</section>
+
+<section class="full-vertical white" data-background="url(md/04_simple-charts/taucharts-guide.png)">
+  <a class="source" href="https://api.taucharts.com/basic/guide.html" target="_blank"><p>https://api.taucharts.com/basic/guide.html
+    </p></a>
+</section>
+
+
+
+
+<!-- backup -->
+<!-- <section class="full-vertical black" data-background="url(md/04_simple-charts/pokemans.jpg)">
+</section>
+-->

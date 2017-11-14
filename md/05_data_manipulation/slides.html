@@ -1,0 +1,272 @@
+<section><h1 class="title">DATA<br/>WRANGLING<br/>IN<br/>JS</h1></h1></section>
+
+<section>
+  <h1>Data Wrangling in JS</h1>
+  <p>Unfortunately, often necessary...</p>
+</section>
+
+<section>
+    <p>Let's start with a simple example:</p>
+    <pre><code>var myArray = [2,4,5,10];
+/* how to get a new array with 
+each number multiplied by 3? */    
+    </code></pre>
+</section>
+
+<section>
+    <p>Something more interesting:</p>
+    <pre><code>var myArray = [2,4,5,10];
+/* how to get a new array with 
+each EVEN number divided by 2? */
+    </code></pre>
+</section>
+
+<section>
+    <p>Something even more interesting:</p>
+    <pre><code>var myArray = [2,4,5,10];
+/* create an array of objects containing:
+   NUM: original_number,
+   SQUARED: original_number_squared
+*/
+    </code></pre>
+</section>
+
+
+<section>
+    <h3>Two main programming styles:</h3>
+    <p><b>Imperative</b>:<br/> How to do something</p>
+    <p><b>Declarative</b>:<br/> What to do (usually associated with a more Functional Programming style)</p>
+    <a class="source" href="http://www.redotheweb.com/2015/09/18/declarative-imperative-js.html" target="_blank">
+        <p>More info on imperative vs declarative in JS</p>
+    </a>
+</section>
+
+<!-- ARRAY FUNCTIONS -->
+<section><h1>Javascript Array functions</h1></section>
+
+<section>
+    <h3>Javascript Array functions</h3>
+    <p><b>sort:</b><br/>sorts an array</p>
+</section>
+
+<section>
+    <h3>JS: sort</h3>
+    <pre><code>console.log([4,2,3,1].sort());
+    </code></pre>
+    <pre>
+=> [1,2,3,4]        
+    </pre>
+</section>
+
+<section>
+<h3>Javascript Array functions</h3>
+<p><b>sort:</b><br/>sorts an array, also works with a compare function (a,b). If the compare function returns<br/>
+    < 0 => a > b, <br/>
+    = 0 => a = b, <br/>
+    > 0 => a < b </p>
+</section>
+
+<section>
+<h3>JS: sort</h3>
+<pre><code>console.log([4,2,3,1].sort(
+    function(a, b){
+        return b - a;
+    }
+));
+</code></pre>
+<pre>
+=> [4,3,2,1]        
+</pre>
+</section>
+
+<section>
+  <h3>Javascript Array functions</h3>
+  <p><b>forEach:</b><br/>traverses an array, performs given function with each element as parameter</p>
+</section>
+
+<section>
+  <h3>JS: forEach</h3>
+  <pre><code>[1,2,3,4].forEach(
+function(d){
+console.log(d * 2);
+});
+  </code></pre>
+  <pre>
+=>
+2
+4
+6
+8
+  </pre>
+</section>
+
+<section>
+    <h3>Javascript Array functions</h3>
+    <p><b>map:</b><br/>performs function with each element as parameter, returns the result as an array</p>
+  </section>
+  
+<section>
+    <h3>JS: map</h3>
+    <pre><code>var roots = [1,2,3,4].map(
+function(d){
+  return Math.sqrt(d);
+});
+console.log(roots);
+    </code></pre>
+    <pre>
+=> [1, 1.414.., 1.732.., 2]
+    </pre>
+</section>
+
+<section>
+    <h3>Javascript Array functions</h3>
+    <p><b>filter:</b><br/>performs function with each element as parameter, return array with all elements where function returns true.</p>
+  </section>
+  
+<section>
+    <h3>JS: filter</h3>
+    <pre><code>var evens = [1,2,3,4].filter(
+function(d){
+  return d % 2 === 0;
+});
+console.log(evens);
+    </code></pre>
+    <pre>
+=> [2, 4]
+    </pre>
+</section>
+
+<section>
+        <h3>Javascript Array functions</h3>
+        <p><b>reduce:</b><br/>performs functions with an "accumulator" and each element as parameters. Return the value of the accumulator.</p>
+      </section>
+      
+    <section>
+        <h3>JS: reduce</h3>
+        <pre><code>var sum = [1,2,3,4].reduce(
+    function(acc, val){
+        return acc + val;
+    },
+    0);
+console.log(sum);
+        </code></pre>
+        <pre>
+    => 10 /* 1 + 2 + 3 + 4
+        </pre>
+</section>
+
+<!-- OBJECT FUNCTIONS -->
+<section><h1>Javascript Object functions</h1></section>
+
+<section>
+    <h3>Javascript Object functions</h3>
+    <p><b>Object.keys:</b><br/>Returns all keys of an object as array.</p>
+  </section>
+
+<section>
+    <h3>JS: Object.keys</h3>
+    <pre><code>var obj = { 'a': 4, 'b': 12, 'c': 36 };
+console.log(Object.keys(obj));
+    </code></pre>
+    <pre>
+=> ['a', 'b', 'c']
+    </pre>
+</section>
+
+<section>
+    <h3>Javascript Object functions</h3>
+    <p><b>Object.values:</b><br/>Returns all values of an object as array.</p>
+  </section>
+
+<section>
+    <h3>JS: Object.values</h3>
+    <pre><code>var obj = { 'a': 4, 'b': 12, 'c': 36 };
+console.log(Object.values(obj));
+    </code></pre>
+    <pre>
+=> [4, 12, 36]
+    </pre>
+</section>
+
+<!-- CHAINING -->
+<section><h1>Javascript chaining</h1></section>
+
+<section>
+    <h3>Javascript chaining</h3>
+    <p>Each of the previous functions is defined as returning the result of its computation.<br/>
+    So you can <b>chain</b> them to have the next function work with the previous one's results:</p>
+    <pre><code>var result = arr.filter(...)
+    .map(...)
+    .reduce(...);
+    </code>
+  </section>
+
+<!-- ES6 arrow functions -->
+<section><h1>ES6 Arrow functions</h1></section>
+
+<section>
+    <h3>ES6 Arrow functions</h3>
+    <p>(ECMAScript 6), the latest, widely-distributed version of Javascript allows a short-hand
+        writing for functions using arrows:</p>
+<pre><code>var myFunc = function(a){
+    return a * 2;
+}
+// becomes:
+var myFunc = (a) => { return a * 2; };
+// or even:
+var myFunc = a => a * 2;
+</code>
+        
+</section>
+
+<section>
+    <p>Arrow functions make declarative calls even shorter:</p>
+<pre>
+<code>var arr = [1,5,14,28];
+
+arr.filter(d => d % 2 === 0)
+    .map(d => d * 2)
+    .reduce((a, v) => a + v);
+
+// => 84
+</code><pre>
+</section>
+
+<!-- LODASH -->
+<section><h1>Lodash</h1></section>
+
+<section>
+    <a href="https://lodash.com/" target="_blank"><h3>Lodash</h3></a>
+    <p>Lodash is a helper library containing even more functions for various array and object manipulations.</p>
+    <p>Each function name starts with _. (underscore dot) and usually takes an array/object and a string/function as parameters.</p>
+</section>
+
+<section>
+    <h3>Lodash _.without</h3>
+    <pre><code>_.without([2, 1, 2, 3], 1, 2);
+// => [3]
+    </code></pre>
+</section>
+
+<section>
+    <h3>Lodash _.keyBy</h3>
+    <pre><code>var array = [
+{ 'dir': 'left', 'code': 97 },
+{ 'dir': 'right', 'code': 100 }
+];
+
+_.keyBy(array, function(o) {
+return String.fromCharCode(o.code);
+});
+// => { 'a': { 'dir': 'left', 'code': 97 }, 
+//      'd': { 'dir': 'right', 'code': 100 } }
+
+_.keyBy(array, 'dir');
+// => { 'left': { 'dir': 'left', 'code': 97 }, 
+//      'right': { 'dir': 'right', 'code': 100 } }
+    </code></pre>
+</section>
+
+<section><h1>Learn more:</h1>
+  <a href="http://learnjsdata.com/index.html" target="_blank">http://learnjsdata.com</a>
+</section>
