@@ -26,5 +26,46 @@
     &lt;circle cx="50px" cy="50px" r="20px"&gt;
     &lt;/circle&gt;
 &lt;/svg&gt;</code></pre>
+<svg width="150" height="150">
+    <circle cx="50px" cy="50px" r="20px">
+    </circle>
+  </svg>
+<a class="source" href="http://jsfiddle.net/dominikus/McM46/2/" target="_blank"><p>JSFiddle: Basic SVG</p></a>
 </section>
 
+<section><h3>SVG</h3>
+  <p>SVG comes with several basic shapes:</p>
+<pre><code>&lt;svg width="550" height="100"&gt;
+    &lt;circle cx="50px" cy="50px" r="30px"&gt;&lt;/circle&gt;
+    &lt;rect x="95px" y="20px" width="60px" height="60px"&gt;&lt;/rect&gt;
+    &lt;ellipse cx="200px" cy="50px" rx="30px" ry="20px"&gt;&lt;/ellipse&gt;
+&lt;/svg&gt;&lt;</code></pre>
+<svg width="550" height="150">
+    <circle cx="50px" cy="50px" r="30px"></circle>
+    <rect x="95px" y="20px" width="60px" height="60px"/>
+    <ellipse cx="200px" cy="50px" rx="30px" ry="20px"/>
+</svg>
+<a class="source" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Basic_Shapes" target="_blank"><p>MDN: Basic SVG Shapes</p></a>
+</section>
+
+<section><h3>SVG</h3>
+  <p><b>Polylines</b> and <b>polygons</b> have a single <code>points</code> attribute, containing a list of coordinates:</p>
+<pre><code>&lt;polyline points="0 0, 65 120, 0 115, 75 130"/&gt;
+</code></pre>
+<svg width="300" height="200">
+    <polyline points="0 0, 65 120, 0 115, 75 130" />
+</svg>
+<a class="source" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Basic_Shapes" target="_blank"><p>MDN: Basic SVG Shapes</p></a>
+</section>
+
+<section><h3>SVG</h3>
+  <p><b>Path</b> is the most flexible shape, has its own mini-language and can be used to draw lines, arcs, curves, ...</p>
+<pre><code>&lt;path d="M10 315 L 110 215 A 30 50 0 0 1 162.55 162.45
+  L 172.55 152.45 A 30 50 -45 0 1 215.1 109.9 L 315 10" /&gt;
+</code></pre>
+<svg width="320" height="320" xmlns="http://www.w3.org/2000/svg">
+  <path d="M10 315 L 110 215 A 30 50 0 0 1 162.55 162.45
+      L 172.55 152.45 A 30 50 -45 0 1 215.1 109.9 L 315 10"/>
+</svg>
+<a class="source" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths" target="_blank"><p>MDN: SVG Paths</p></a>
+</section>
