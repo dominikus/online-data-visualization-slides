@@ -1,35 +1,193 @@
 <section><h1 class="title">d3.js</h1></h1></section>
 
-<section class="full white" data-background="url(md/05_d3-intro/d3_1.png)">
+<section class="full white" data-background="url(md/06_d3-intro/d3_1.png)">
   <a class="source" href="https://d3js.org" target="_blank"><p>d3.js</p></a>
 </section>
 
 
 
-<section class="full white" data-background="url(md/05_d3-intro/d3_2.png)">
+<section class="full white" data-background="url(md/06_d3-intro/d3_2.png)">
   <a class="source" href="https://github.com/d3/d3" target="_blank"><p>https://github.com/d3/d3</p></a>
 </section>
 
 
 
-<section class="full white" data-background="url(md/05_d3-intro/mike.jpg)">
+<section class="full-vertical white" data-background="url(md/06_d3-intro/mike.jpg)">
   <a class="source" href="https://twitter.com/mbostock" target="_blank"><p>https://twitter.com/mbostock</p></a>
   <aside class="notes">What we're about to do is a deep dive into the mind of this person: Mike Bostock.</aside>
 </section>
 
 <section>
+    <h3>d3.js Basics</h3>
+    <p>From d3js.org:</p>
+  <q>D3 allows you to bind arbitrary data to a Document Object Model (DOM), and then apply data-driven transformations to the document.</q>
+  </section>
+  
+<section>
+  <h3>d3.js Basics</h3>
+  <p>Despite being sold as a data visualization library, at its core, d3.js is a general purpose library for manipulating the DOM - very similar to 
+    jQuery, mootools, ...</p>
+  <pre><code>/* jQuery: */
+$('h1.update').html('New headline!');
+/* d3.js: */
+d3.select('h1.update').html('New headline!');
+</code></pre>
+</section>
+
+<section>
+    <h3>d3.js Basics</h3>
+    <p>... but: it brings with it various additions, specifically geared towards datavis!</p>
+    <pre><code>// define a color scale:
+var scale = d3.scale.category10();
+// recolor &lt;p&gt;s:
+d3.selectAll('p')
+  .style('background-color', function(d,i){
+    return scale(i); 
+  });</code></pre>
+</section>
+
+<section>
+    <h3>d3.js Basics</h3>
+    <p><b>Chaining</b>: d3.js encourages chaining functions. Most functions return some sensible value to keep working with.
+  <pre><code>d3.select('div#chart') // select &lt;div&gt;...
+    .append('p') // add &lt;p&gt; ...
+    .text('chart goes here'); // set its text
+  </code></pre>
+</section>
+  
+<section>
+  <h3>d3.js Basics</h3>
+  <p><b>Getter/Setter</b>: most d3.js functions work as both getters and setters. If you leave out the parameter, you get the value back.</p>
+<pre><code>d3.select('p').text(); // get the text content of &lt;p&gt;
+d3.select('p').text('hullo'); // set the text content 
+                              // of &lt;p&gt;
+</code>
+</section>
+
+<section>
+  <h3>d3.js Basics</h3>
+  <p>... plus: d3.js setter functions also take functions as parameters, making them very flexible.
+  These functions take parameters <code>d</code> (the current data) and <code>i</code> (the number in the selection array.)
+  </p>
+<pre><code>d3.selectAll('p').text(function(d,i){
+  return 'node: ' + i + ' with data: ' + d;
+});
+</code></pre>
+</section>
+
+<section>
+  <h3>d3.js Basics</h3>
   <p>d3.js follows the <b>declarative approach</b> - it talks about the <i>What</i>, not the <i>How</i>.</p>
 </section>
 
-<section># Code test
-<pre>
-<code data-trim data-noescape>
-d3.selectAll('circle')
-  .data(data)
-  .enter()
-    .append('circle')
-    .attr('cx', function(d){
-      return d.x;
-    });
+<section><h3>More resources:</h3>
+  <a href="https://github.com/d3/d3/blob/master/API.md" target="_blank"><p>d3.js API Reference</p></a>
+  <a href="https://github.com/d3/d3/wiki/Tutorials" target="_blank"><p>d3.js Tutorials Wiki</p></a>
+  <a href="https://bl.ocks.org/" target="_blank"><p>bl.ocks.org (massive collection of examples)</p></a>
+  <a href="http://bl.ocksplorer.org/" target="_blank"><p>bl.ocksplorer (search for bl.ocks)</p></a>
+  <a href="https://stackoverflow.com/questions/tagged/d3.js" target="_blank"><p>d3.js questions on StackOverflow</p></a>
+  <a href="https://d3-slackin.herokuapp.com/" target="_blank">d3.js on Slack</p></a>
+</section>
+
+<!-- selections -->
+<section><h1>d3.js Selections</h1></section>
+
+<section><h3>d3.js Selections</h3>
+  <p>The core of d3.js is the ability to select one or more DOM elements.<br/>
+    The syntax is based on the <a href="https://www.w3.org/TR/selectors-api/" target="_blank">W3C Selectors API</a>,
+    just like CSS (so nothing new to learn!)</p>
+</section>
+
+<section><h3>d3.js Selections</h3>
+  <pre><code>#foo        // &lt;any id="foo"&gt;
+foo         // &lt;foo&gt;
+.foo        // &lt;any class="foo"&gt;
+[foo=bar]   // &lt;any foo="bar"&gt;
+foo bar     // &lt;foo&gt;&lt;bar/&gt;&lt;/foo&gt;
 </code></pre>
+</section>
+
+<section><h3>d3.js Selections</h3>
+  <p><b>d3.select(SELECTOR):</b><br/>
+    <code>d3.select</code> selects the first element that fits the selector. If it doesn't find anything it stays empty (this is going
+    to be important later!).</p>
+<pre><code>d3.select('body'); // &lt;body&gt;
+d3.select('h1 i'); // first &lt;i&gt; in an &lt;h1&gt;
+d3.select('svg#chart'); // first &lt;svg&gt; with id "chart"
+</code></pre>
+</section>
+
+<section><h3>d3.js Selections</h3>
+  <p><b>d3.selectAll(SELECTOR):</b><br/>
+    Just like <code>d3.select</code>, but selects ALL elements that fit the selector.</p>
+<pre><code>d3.selectAll('div'); // selects all &lt;div&gt;s
+d3.selectAll('p.text'); // selects all &lt;p&gt;s with class "text"
+d3.selectAll('div#chart *'); // selects everything in the &lt;div&gt; with id "chart"
+</code></pre>
+</section>
+
+<section><h3>d3.js Selections</h3>
+  <p><code>d3.selectAll().nodes()</code> gives you an array of selected elements. So to get the third element in the selection you can
+    either use 'nth-child()' in the selector or:
+<pre><code>d3.selectAll('p').nodes()[2]</code></pre>
+</section>
+
+<section><h3>Selections</h3>
+  <p>Since d3 selections work just like CSS selections, there's lot of training material on the web:</p>
+  <a href="https://flukeout.github.io/" target="_blank"><p>CSS Diner</p></a>
+  <a href="https://www.w3schools.com/cssref/css_selectors.asp" target="_blank"><p>w3cschools overview</p></a>
+</section>
+
+<!-- DOM helpers -->
+<section><h1>d3: The JQuery Parts</h1></section>
+
+<section><h3>d3 DOM Helpers</h3>
+  <p>You can add/remove DOM elements using d3 with <code>append()</code> and <code>remove()</code>.
+<pre><code>// add an &lt;svg&gt; tag to body:
+d3.select('body').append('svg');
+// remove all &lt;div&gt;s from the document:
+d3.selectAll('div').remove();
+</code>
+
+<section><h3>d3 DOM Helpers</h3>
+  <p>You can also change text content with <code>text()</code> and html content with <code>html()</code>.
+<pre><code>// change the text in a &lt;p&gt;
+d3.select('p').text('this is new text');
+// add italic text to &lt;p&gt;:
+d3.select('p').html('&lt;i&gt;yo&lt;/i&gt;');
+</code></pre>
+</section>
+
+<section><h3>d3 DOM Helpers</h3>
+  <p>Set/remove class attributes with <code>classed()</code>:
+<pre><code>// check if the first &lt;p&gt; has class 'warn':
+d3.select('p').classed('warn');
+// set the classes 'important' and 'visible' for the first &lt;div&gt;:
+d3.select('div').classed('important visible', true);
+</section>
+
+<section><h3>d3 DOM Helpers</h3>
+  <p><code>d3.select(...).attr()</code> lets you access/change DOM attributes of the selected node:</p>
+<pre><code>// read the x1 attribute of a line:
+var x1 = d3.select('line').attr('x1');
+// ... then change it:
+d3.select('line').attr('x1', x1 + 40);
+</code></pre>
+</section>
+
+<section><h3>d3 DOM Helpers</h3>
+  <p><code>d3.select(...).style()</code> lets you access/change the CSS attributes of the selected node:</p>
+<pre><code>// get the opacity of a &lt;p&gt;
+var op = d3.select('p').style('opacity');
+// change all &lt;p&gt;s opacities:
+var psNum = d3.selectAll('p').size();
+d3.selectAll('p').style('opacity', function(d,i){
+  return i / (psNum - 1);
+});
+</code></pre>
+</section>
+
+<section><h3>d3.js Selections</h3>
+  <p>Let's try some selections:</p>
+  <a href="https://jsfiddle.net/dominikus/72xL8xtm/" target="_blank"><p>JSFiddle: d3 selector playground</p></a>
 </section>

@@ -104,15 +104,56 @@
   chart.renderTo('#chart');</code></pre>
 </section>
 
+<section class="full-vertical black" data-background="url(md/04_simple-charts/pokemans.jpg)">
+</section>
+
+<!-- fetch -->
+<section><h1>fetch API</h1></section>
+
+<section><h3>fetch API</h3>
+  <p>Easy way to get remote (or local!) data into your script.<br/>
+  Replaces the old XMLHttpRequest API.</p>
+  <a class="source" target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_APIhttps://developer.mozilla.org/en-US/docs/Web/API/Fetch_API"><p>MDN: Fetch API</p></a>
+</section>
+
+<section><h3>fetch API</h3>
+  <p>Basic syntax (text):</p>
+  <pre><code>fetch(remoteURL)
+  .then(function(result){
+    return result.text();
+  })
+  .then(function(parsedResult){
+    // do something with the text...
+  });
+  </code>
+</section>
+
+<section><h3>fetch API</h3>
+  <p>Basic syntax (JSON):</p>
+  <pre><code>fetch(remoteURL)
+  .then(function(result){
+    return result.json();
+  })
+  .then(function(parsedResult){
+    // do something with the JSON...
+  });
+  </code>
+</section>
+
+<section><h3>fetch API</h3>
+  <p>Widely supported. If you need IE support, use <a href="https://github.com/github/fetch" target="_blank">polyfill</a>.</p>
+  <img src="md/04_simple-charts/fetch-support.png"></img>
+  <a class="source" target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_APIhttps://developer.mozilla.org/en-US/docs/Web/API/Fetch_API"><p>MDN: Fetch API</p></a>
+</section>
+
+
 <section class="full-vertical white" data-background="url(md/04_simple-charts/taucharts-guide.png)">
   <a class="source" href="https://api.taucharts.com/basic/guide.html" target="_blank"><p>https://api.taucharts.com/basic/guide.html
     </p></a>
 </section>
 
-
-
-
-<!-- backup -->
-<!-- <section class="full-vertical black" data-background="url(md/04_simple-charts/pokemans.jpg)">
+<section class="full-vertical white" data-background="url(md/04_simple-charts/fetch_broken.png)">
 </section>
--->
+
+
+
