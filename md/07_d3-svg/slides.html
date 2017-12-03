@@ -16,13 +16,13 @@
 
 <section><h3>SVG</h3>
   <p>SVG (Scalable Vector Graphics) is the vector graphics format of the web.</p>
-  <aside>(Vector graphics: lines, circles, shapes<br/>
-    Bitmap graphics: pixels)</aside>
+  <p>(Vector graphics: lines, circles, shapes<br/>
+    Bitmap/raster graphics: pixels)</p>
 </section>
 
 <section><h3>SVG</h3>
   <p>SVG is human-readable and part of the HTML specification. SVG is defined using HTML-tags:</p>
-<pre><code>&lt;svg width="150" height="150"&gt;
+<pre><code class="html">&lt;svg width="150" height="150" xmlns="http://www.w3.org/2000/svg"&gt;
     &lt;circle cx="50px" cy="50px" r="20px"&gt;
     &lt;/circle&gt;
 &lt;/svg&gt;</code></pre>
@@ -35,22 +35,64 @@
 
 <section><h3>SVG</h3>
   <p>SVG comes with several basic shapes:</p>
-<pre><code>&lt;svg width="550" height="100"&gt;
+<pre><code class="html">&lt;svg width="550" height="100"&gt;
     &lt;circle cx="50px" cy="50px" r="30px"&gt;&lt;/circle&gt;
     &lt;rect x="95px" y="20px" width="60px" height="60px"&gt;&lt;/rect&gt;
     &lt;ellipse cx="200px" cy="50px" rx="30px" ry="20px"&gt;&lt;/ellipse&gt;
 &lt;/svg&gt;&lt;</code></pre>
 <svg width="550" height="150">
     <circle cx="50px" cy="50px" r="30px"></circle>
-    <rect x="95px" y="20px" width="60px" height="60px"/>
-    <ellipse cx="200px" cy="50px" rx="30px" ry="20px"/>
+    <rect x="95px" y="20px" width="60px" height="60px"></rect>
+    <ellipse cx="200px" cy="50px" rx="30px" ry="20px"></ellipse>
 </svg>
 <a class="source" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Basic_Shapes" target="_blank"><p>MDN: Basic SVG Shapes</p></a>
 </section>
 
 <section><h3>SVG</h3>
-  <p><b>Polylines</b> and <b>polygons</b> have a single <code>points</code> attribute, containing a list of coordinates:</p>
-<pre><code>&lt;polyline points="0 0, 65 120, 0 115, 75 130"/&gt;
+  <p>SVG's coordinate system starts in the top-left corner:</p>
+<svg width="450" height="450">
+  <line x1="10px" y1="10px" x2="400px" y2="10px" stroke="#333" stroke-width="3px"></line>
+  <line x1="10px" y1="10px" x2="10px" y2="400px" stroke="#333" stroke-width="3px"></line>
+  <circle cx="10px" cy="10px" r="10px" fill="red"></circle>
+  <text x="20" y="50">(0,0)</text>
+</svg>
+</section>
+
+<!-- d3 + SVG -->
+<section><h1>d3 + SVG</h1></section>
+
+<section><h3>d3 + SVG</h3>
+<p>d3.js was originally built with SVG in mind. All its DOM manipulation works with SVG.</p>
+<pre><code class="javascript">var svg = d3.select('body').append('svg')
+  .attr('width', 300)
+  .attr('height', 300);
+</code></pre>
+</section>
+
+<section><h3>d3 + SVG</h3>
+  <pre><code class="javascript">var svg = d3.select('body').append('svg')
+  .attr('width', 300)
+  .attr('height', 300);
+
+svg.append('circle').classed('my-circle', true)
+  .attr('cx', 30)
+  .attr('cy', 30)
+  .attr('r', 25);
+  </code></pre>
+</section>
+
+<section><h3>d3 + SVG</h3>
+<p>Let's draw some circles with d3!</p>
+<p>(Use code/d3-basics/template.html as a starting point)</p>
+</section>
+
+<!-- more SVG shapes: -->
+
+<section><h1>More SVG Shapes</h1></section>
+
+<section><h3>SVG</h3>
+  <p><b>Polylines</b> and <b>polygons</b> have a single <code class="html">points</code> attribute, containing a list of coordinates:</p>
+<pre><code class="html">&lt;polyline points="0 0, 65 120, 0 115, 75 130"/&gt;
 </code></pre>
 <svg width="300" height="200">
     <polyline points="0 0, 65 120, 0 115, 75 130" />
@@ -60,7 +102,7 @@
 
 <section><h3>SVG</h3>
   <p><b>Path</b> is the most flexible shape, has its own mini-language and can be used to draw lines, arcs, curves, ...</p>
-<pre><code>&lt;path d="M10 315 L 110 215 A 30 50 0 0 1 162.55 162.45
+<pre><code class="html">&lt;path d="M10 315 L 110 215 A 30 50 0 0 1 162.55 162.45
   L 172.55 152.45 A 30 50 -45 0 1 215.1 109.9 L 315 10" /&gt;
 </code></pre>
 <svg width="320" height="320" xmlns="http://www.w3.org/2000/svg">
@@ -68,4 +110,230 @@
       L 172.55 152.45 A 30 50 -45 0 1 215.1 109.9 L 315 10"/>
 </svg>
 <a class="source" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths" target="_blank"><p>MDN: SVG Paths</p></a>
+</section>
+
+<!-- svg styling -->
+<section><h1>SVG Styling</h1></section>
+
+<section><h3>SVG Styling</h3>
+  <p>SVG elements can be styled using a variety of attributes:</p>
+<pre><code class="html">&lt;circle cx="50px" cy="50px" r="20px"
+  stroke="blue"
+  fill="pink" /&gt;
+</pre></code>
+<svg width="320" height="320" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="50px" cy="50px" r="20px" stroke="blue" fill="pink" />
+</svg>
+</section>
+
+<section><h3>SVG Styling</h3>
+  <p>There's also attributes for opacity (in addition to the regular CSS-opacity):</p>
+<pre><code class="html">&lt;circle cx="50px" cy="50px" r="20px"
+  stroke="blue"
+  fill="pink"
+  stroke-opacity="0.5"
+  fill-opacity="0.5" /&gt;
+</pre></code>
+<svg width="320" height="320" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="50px" cy="50px" r="20px" stroke="blue" fill="pink" stroke-opacity="0.5" fill-opacity="0.5"/>
+</svg>
+</section>
+
+<section><h3>SVG Styling</h3>
+  <p>Plus attributes for line-styles:</p>
+<pre><code class="html">&lt;circle cx="50px" cy="50px" r="20px"
+  stroke="blue"
+  fill="pink"
+  stroke-width="20" /&gt;
+</pre></code>
+<svg width="320" height="320" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="50px" cy="50px" r="20px" stroke="blue" fill="pink" stroke-width="20"/>
+</svg>
+</section>
+
+<section><h3>SVG Styling</h3>
+  <p>Most attributes can be set via CSS (except the "position/radius" ones):</p>
+<pre><code class="css">circle {
+  fill: white; stroke: blue;
+  stroke-width: 20; opacity: 0.5;
+}
+</code></pre>
+<pre><code class="html">&lt;circle cx="50px" cy="50px" r="20px"/&gt;
+</pre></code>
+<svg width="320" height="320" xmlns="http://www.w3.org/2000/svg">
+  <style>circle#circle-44499{fill:white;stroke:blue;stroke-width:20;opacity:0.5}</style>
+  <circle id="circle-44499" cx="50px" cy="50px" r="20px"/>
+</svg>
+</section>
+
+<section><h3>SVG Styling</h3>
+  <p>Some elements (e.g., <code>&lt;line&gt;</code>) have weird defaults and need styling to be visible at all:</p>
+  <pre><code class="html">&lt;line x1="20" y1="20" x2="300" y2="80"
+stroke="blue" stroke-width="20"&gt;&lt;/line&gt;</code></pre>
+<svg width="320" height="200"><line x1="20" y1="20" x2="300" y2="80"
+  stroke="blue" stroke-width="20"/></svg>
+</section>
+
+<section><h3>SVG Styling</h3>
+  <p>SVG also supports fills with gradients and general patterns:</p>
+
+  <svg width="1000" height="400" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <linearGradient id="Gradient1" x1="0" y1="0" x2="1" y2="1">
+          <stop class="stop1" offset="0%"/>
+          <stop class="stop2" offset="100%"/>
+        </linearGradient>
+        <style type="text/css">
+          #text-07-rect1 { fill: url(#Gradient1); }
+          .stop1 { stop-color: teal; }
+          .stop2 { stop-color: orange; }
+        </style>
+
+        <pattern id="text-07-Pattern" x="0" y="0" width=".25" height=".25">
+            <rect x="0" y="0" width="50" height="50" fill="green"/>
+            <rect x="0" y="0" width="25" height="25" fill="lightblue"/>
+            <circle cx="25" cy="25" r="20" fill="black" fill-opacity="0.5"/>
+          </pattern>
+    </defs>
+   
+    <rect id="text-07-rect1" x="10" y="10" width="400" height="350"/>
+    
+    <rect x="520" y="10" width="400" height="350" fill="url(#text-07-Pattern)" />
+  </svg>
+
+<div class="source">
+<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Gradients"><p>MDN: Gradients</p></a>
+<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Patterns"><p>MDN: Patterns</p></a>
+</div>
+</section>
+
+<!-- svg text -->
+<section><h1>SVG Text</h1></section>
+
+<section><h3>SVG Text</h3>
+  <p>SVG also has a <code>&lt;text&gt;</code> tag:</p>
+<pre><code class="html">&lt;text x="10" y="90"&gt;Hello!&lt;/text&gt;</code></pre>
+<svg width="320" height="200" style="border: 1px solid #333"><text x="10" y="90">Hello!</text></svg>
+</section>
+
+<section><h3>SVG Text</h3>
+  <p>Note that the <code>y</code> attribute determines the text's baseline!</p>
+<pre><code class="html">&lt;text x="10" y="90"&gt;Hello!&lt;/text&gt;</code></pre>
+<svg width="320" height="200" style="border: 1px solid #333"><text x="10" y="90">Hello!</text>
+<circle cx="10" cy="90" r="7" fill="red"/></svg>
+</section>
+
+<section><h3>SVG Text</h3>
+  <p>SVG Text ignores <code>text-align</code>, use <code>text-anchor</code> (<code>start, middle, end</code>) instead.</p>
+<pre><code class="html">&lt;text x="10" y="90" text-anchor="middle"&gt;Hello!&lt;/text&gt;</code></pre>
+<svg width="320" height="200" style="border: 1px solid #333"><text x="10" y="90" text-anchor="middle">Hello!</text>
+<circle cx="10" cy="90" r="7" fill="red"/></svg>
+</section>
+
+<section><h3>SVG Text</h3>
+  <p>You can style SVG text using the regular CSS font attributes:</p>
+<pre><code class="css">text {
+  font-family: serif; font-style: italic;
+  font-variant: small-caps; font-size: 94px;
+}</code></pre>
+<pre><code class="html">&lt;text x="10" y="90"&gt;Hello!&lt;/text&gt;</code></pre>
+<svg width="320" height="200" style="border: 1px solid #333">
+  <style>text#text-07-01{font-family:serif;font-style:italic;font-variant:small-caps;font-size:94px;}</style>
+  <text id="text-07-01" x="10" y="90">Hello!</text>
+</svg>
+</section>
+
+<section><h3>SVG Text</h3>
+  <p>SVG Text doesn't do line breaks :(</p>
+<pre><code class="html">&lt;text x="10" y="90"&gt;Hello! This is a very long text which
+  will just disappear beyond the SVG's borders.&lt;/text&gt;</code></pre>
+<svg width="620" height="200" style="border: 1px solid #333">
+  <text x="10" y="90">Hello! This is a very long text which
+      will just disappear beyond the SVG's borders.</text>
+</svg>
+</section>
+
+<section><h3>SVG Text</h3>
+  <p>You can use the <code>tspan</code> element to do that manually...</p>
+<pre><code class="html">&lt;text x="10" y="50"&gt;&lt;Hello! This is a very
+&lt;tspan x="10" y="100"&gt;long text which will just&lt;/tspan&gt;
+&lt;tspan x="10" y="150"&gt;disappear beyond the SVG's
+borders.&lt;/tspan&gt;&lt;/text&gt;</code></pre>
+<svg width="620" height="200" style="border: 1px solid #333">
+  <text x="10" y="50">Hello! This is a very <tspan x="10" y="100">long text which
+      will just</tspan><tspan x="10" y="150">disappear beyond the SVG's borders.</tspan></text>
+</svg>
+</section>
+
+<section><h3>SVG Text</h3>
+  <p>Use <code>textPath</code> to make text paths:</p>
+<pre><code class="html">&lt;path id="my_path"
+d="M 60,60 C 240,60 240,300 700,250" fill="transparent" /&gt;
+&lt;text&gt;
+  &lt;textPath xlink:href="#my_path"&gt;This text follows a curve.&lt;/textPath&gt;
+&lt;/text&gt;
+</code></pre>
+    <svg width="820px" height="300px">
+  <path id="text-07-my_path" d="M 60,60 C 240,60 240,300 700,250" fill="transparent" />
+  <text>
+    <textPath xlink:href="#text-07-my_path">This text follows a curve.</textPath>
+  </text>
+</svg>
+</section>
+
+<section>
+TODO: add exercise for SVG text
+</section>
+
+<!-- SVG groups -->
+
+<section><h1>SVG Groups</h1></section>
+
+<section><h3>SVG Groups</h3>
+  <p>Use groups <code>&lt;g&gt;</code> to apply attributes to several elements:</p>
+<pre><code class="html">&lt;g transform="translate(100, 100)"&gt;
+  &lt;circle cx="0" cy="0" r="100" fill="#dd0000" /&gt;
+  &lt;text x="0" y="0" fill="white" text-anchor="middle"&gt;circle&lt;/text&gt;
+&lt;/g&gt;
+</code></pre>
+<svg width="400px" height="300px" style="border: 1px solid #333">
+  <g transform="translate(100, 100)">
+    <circle cx="0" cy="0" r="100" fill="#dd0000" />
+    <text x="0" y="0" fill="white" text-anchor="middle">circle</text>
+  </g>
+</svg>
+</section>
+
+<section><h3>SVG Groups</h3>
+  <p>Use groups <code>&lt;g&gt;</code> to apply attributes to several elements:</p>
+<pre><code class="html">&lt;g transform="rotate(45)"&gt;
+  &lt;circle cx="0" cy="0" r="100" fill="#dd0000" /&gt;
+  &lt;text x="0" y="0" fill="white" text-anchor="middle"&gt;circle&lt;/text&gt;
+&lt;/g&gt;
+</code></pre>
+<svg width="400px" height="300px" style="border: 1px solid #333">
+  <g transform="rotate(45)">
+    <circle cx="0" cy="0" r="100" fill="#dd0000" />
+    <text x="0" y="0" fill="white" text-anchor="middle">circle</text>
+  </g>
+</svg>
+</section>
+
+<section><h3>SVG Groups</h3>
+  <p>Use groups <code>&lt;g&gt;</code> to apply attributes to several elements:</p>
+<pre><code class="html">&lt;g transform="translate(100, 100) rotate(45)"&gt;
+  &lt;circle cx="0" cy="0" r="100" fill="#dd0000" /&gt;
+  &lt;text x="0" y="0" fill="white" text-anchor="middle"&gt;circle&lt;/text&gt;
+&lt;/g&gt;
+</code></pre>
+<svg width="400px" height="300px" style="border: 1px solid #333">
+  <g transform="translate(100, 100) rotate(45)">
+    <circle cx="0" cy="0" r="100" fill="#dd0000" />
+    <text x="0" y="0" fill="white" text-anchor="middle">circle</text>
+  </g>
+</svg>
+</section>
+
+<section>
+TODO: add exercise for rotate, translate, scale + order
 </section>

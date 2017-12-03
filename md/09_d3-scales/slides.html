@@ -1,0 +1,128 @@
+<section><h1 class="title">d3 scales</h1></section>
+
+<section>
+  <h3>Scales</h3>
+  <p>Scales are functions that "map a dimension of abstract data to a visual representation". This can be anything from screen coordinates, to circles radii, to colors.</p>
+  <a class="source" href="https://github.com/d3/d3-scale" target="_blank"><p>Github: d3-scale</p></a>
+</section>
+
+<section><h3>Scales</h3>
+  <p>Let's try it with a simple example: code/d3-scales/01_write_a_scale.html.</p>
+</section>
+
+<section><h3>Scales</h3>
+  <p>Scales map an input from a <b>domain</b> to an output <b>range</b>.</p>
+  <img data-src="md/09_d3-scales/idvw_0701.png" />
+  <a class="source" href="http://chimera.labs.oreilly.com/books/1230000000345/ch07.html#_domains_and_ranges" target="_blank"><p>Murray: Interactive Data Visualization for the Web</p></a>
+</section>
+
+<section><h3>Scales</h3>
+  <p>d3 solution to 01_write_a_scale.html:</p>
+<pre><code class="javascript">var myScale = d3.scaleLinear()
+  .domain([0, 60])
+  .range([0, 200]);
+</code></pre>
+</section>
+
+<!-- continuous scales -->
+<section><h1>Continuous scales</h1></section>
+
+<section><h3>Continuous scales</h3>
+  <p>Linear scales (<code>d3.scaleLinear()</code>) map an input linearly to an output range:</p>
+<pre><code class="javascript">d3.scaleLinear().domain([20, 100]).range([50, 500]);
+// ... gets the same results as: 
+var scale = function(d){ return 
+  ((d - 20) / (100 - 20)) * (500 - 50) + 50;
+}
+</code></pre>
+</section>
+
+<section><h3>Continuous scales</h3>
+  <p>Linear scales do not automatically cut off input values outside of the domain:</p>
+<pre><code class="javascript">var scale = d3.scaleLinear()
+  .domain([20, 100])
+  .range([50, 500]);
+
+scale(0);    // => -62.5
+scale(200);  // => 1062.5
+</code></pre>
+</section>
+
+<section><h3>Continuous scales</h3>
+  <p>Use <code>clamp()</code> to enforce cut-offs:</p>
+<pre><code class="javascript">var scale = d3.scaleLinear()
+  .domain([20, 100])
+  .range([50, 500])
+  .clamp();
+
+scale(0);    // => 50
+scale(200);  // => 500
+</code></pre>
+</section>
+
+<section><h3>Continuous scales</h3>
+  <p>d3 linear scales even work with color ranges:</p>
+<pre><code class="javascript">var scale = d3.scaleLinear()
+  .domain([20, 100])
+  .range(["aqua", "firebrick"]);
+
+scale(40);  // => "rgb(45, 200, 200)"
+scale(80);  // => "rgb(134, 89, 89)"
+</code></pre>
+</section>
+
+<section><h3>Continuous scales</h3>
+  <p>All scales support <code>invert()</code>, which returns the corresponding input for a given output value:</p>
+<pre><code class="javascript">var scale = d3.scaleLinear()
+  .domain([20, 100])
+  .range([50, 500]);
+
+scale.invert(500);  // => 100
+scale.invert(50);  // => 20
+</code></pre>
+</section>
+
+<section><h3>Continuous scales</h3>
+  <p>d3 comes with more built-in continuous scales:<br/>
+    <code>d3.scalePow</code> for power scales (set exponent with <code>.exponent()</code>)<br/>
+    <code>d3.scaleSqrt</code> for a square root scale<br/>
+    <code>d3.scaleLog</code> for a logarithmic scale</p>
+</section>
+
+<section><h3>Continuous scale</h3>
+  <p>Let's plot these scales... (code/d3-scales/02_continuous.html)</p>
+  <img data-src="md/09_d3-scales/scales.png" style="max-width: 90%; height: auto;"/>
+</section>
+
+<!-- time scales -->
+<section><h1>Time scales</h1></section>
+
+<section><h3>Time scales</h3>
+  <p>One commonly used input domain is time. <code>d3.scaleTime()</code>
+    works as a linear scale for that domain.</p>
+  </section>
+
+<section><h3>Time scales</h3>
+<pre><code class="javascript">var s = d3.scaleTime()
+  .domain([new Date(2017, 0, 1), new Date(2017, 11, 32)])
+  .range([0, 800]);
+
+s(new Date(2017, 2, 1))  // => 129.31506849315068
+s(new Date(2017, 7, 10)) // => 484.2922374429223
+</code></pre>
+</section>
+
+<!-- ordinal scales -->
+<section><h1>Ordinal scales</h1></section>
+
+<section><h3>Ordinal scales</h3>
+  <p><code>d3.scaleOrdinal()</code> takes an array of ordinal values as its input domain:</p>
+<pre><code class="javascript">var s = d3.scaleOrdinal()
+  .domain(["apples", "bananas", "oranges"])
+  .range([0, 300]);
+
+s("apples");  // => 0
+s("bananas"); // => 150
+s("batman");  // => 300
+</code></pre>
+</section>

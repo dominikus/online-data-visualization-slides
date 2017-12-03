@@ -27,7 +27,7 @@
   <h3>d3.js Basics</h3>
   <p>Despite being sold as a data visualization library, at its core, d3.js is a general purpose library for manipulating the DOM - very similar to 
     jQuery, mootools, ...</p>
-  <pre><code>/* jQuery: */
+  <pre><code class="javascript">/* jQuery: */
 $('h1.update').html('New headline!');
 /* d3.js: */
 d3.select('h1.update').html('New headline!');
@@ -37,7 +37,7 @@ d3.select('h1.update').html('New headline!');
 <section>
     <h3>d3.js Basics</h3>
     <p>... but: it brings with it various additions, specifically geared towards datavis!</p>
-    <pre><code>// define a color scale:
+    <pre><code class="javascript">// define a color scale:
 var scale = d3.scale.category10();
 // recolor &lt;p&gt;s:
 d3.selectAll('p')
@@ -49,7 +49,7 @@ d3.selectAll('p')
 <section>
     <h3>d3.js Basics</h3>
     <p><b>Chaining</b>: d3.js encourages chaining functions. Most functions return some sensible value to keep working with.
-  <pre><code>d3.select('div#chart') // select &lt;div&gt;...
+  <pre><code class="javascript">d3.select('div#chart') // select &lt;div&gt;...
     .append('p') // add &lt;p&gt; ...
     .text('chart goes here'); // set its text
   </code></pre>
@@ -58,7 +58,7 @@ d3.selectAll('p')
 <section>
   <h3>d3.js Basics</h3>
   <p><b>Getter/Setter</b>: most d3.js functions work as both getters and setters. If you leave out the parameter, you get the value back.</p>
-<pre><code>d3.select('p').text(); // get the text content of &lt;p&gt;
+<pre><code class="javascript">d3.select('p').text(); // get the text content of &lt;p&gt;
 d3.select('p').text('hullo'); // set the text content 
                               // of &lt;p&gt;
 </code>
@@ -67,9 +67,9 @@ d3.select('p').text('hullo'); // set the text content
 <section>
   <h3>d3.js Basics</h3>
   <p>... plus: d3.js setter functions also take functions as parameters, making them very flexible.
-  These functions take parameters <code>d</code> (the current data) and <code>i</code> (the number in the selection array.)
+  These functions take parameters <code class="javascript">d</code> (the current data) and <code class="javascript">i</code> (the number in the selection array.)
   </p>
-<pre><code>d3.selectAll('p').text(function(d,i){
+<pre><code class="javascript">d3.selectAll('p').text(function(d,i){
   return 'node: ' + i + ' with data: ' + d;
 });
 </code></pre>
@@ -99,7 +99,7 @@ d3.select('p').text('hullo'); // set the text content
 </section>
 
 <section><h3>d3.js Selections</h3>
-  <pre><code>#foo        // &lt;any id="foo"&gt;
+  <pre><code class="javascript">#foo        // &lt;any id="foo"&gt;
 foo         // &lt;foo&gt;
 .foo        // &lt;any class="foo"&gt;
 [foo=bar]   // &lt;any foo="bar"&gt;
@@ -109,9 +109,9 @@ foo bar     // &lt;foo&gt;&lt;bar/&gt;&lt;/foo&gt;
 
 <section><h3>d3.js Selections</h3>
   <p><b>d3.select(SELECTOR):</b><br/>
-    <code>d3.select</code> selects the first element that fits the selector. If it doesn't find anything it stays empty (this is going
+    <code class="javascript">d3.select</code> selects the first element that fits the selector. If it doesn't find anything it stays empty (this is going
     to be important later!).</p>
-<pre><code>d3.select('body'); // &lt;body&gt;
+<pre><code class="javascript">d3.select('body'); // &lt;body&gt;
 d3.select('h1 i'); // first &lt;i&gt; in an &lt;h1&gt;
 d3.select('svg#chart'); // first &lt;svg&gt; with id "chart"
 </code></pre>
@@ -119,17 +119,17 @@ d3.select('svg#chart'); // first &lt;svg&gt; with id "chart"
 
 <section><h3>d3.js Selections</h3>
   <p><b>d3.selectAll(SELECTOR):</b><br/>
-    Just like <code>d3.select</code>, but selects ALL elements that fit the selector.</p>
-<pre><code>d3.selectAll('div'); // selects all &lt;div&gt;s
+    Just like <code class="javascript">d3.select</code>, but selects ALL elements that fit the selector.</p>
+<pre><code class="javascript">d3.selectAll('div'); // selects all &lt;div&gt;s
 d3.selectAll('p.text'); // selects all &lt;p&gt;s with class "text"
 d3.selectAll('div#chart *'); // selects everything in the &lt;div&gt; with id "chart"
 </code></pre>
 </section>
 
 <section><h3>d3.js Selections</h3>
-  <p><code>d3.selectAll().nodes()</code> gives you an array of selected elements. So to get the third element in the selection you can
+  <p><code class="javascript">d3.selectAll().nodes()</code> gives you an array of selected elements. So to get the third element in the selection you can
     either use 'nth-child()' in the selector or:
-<pre><code>d3.selectAll('p').nodes()[2]</code></pre>
+<pre><code class="javascript">d3.selectAll('p').nodes()[2]</code></pre>
 </section>
 
 <section><h3>Selections</h3>
@@ -142,8 +142,8 @@ d3.selectAll('div#chart *'); // selects everything in the &lt;div&gt; with id "c
 <section><h1>d3: The JQuery Parts</h1></section>
 
 <section><h3>d3 DOM Helpers</h3>
-  <p>You can add/remove DOM elements using d3 with <code>append()</code> and <code>remove()</code>.
-<pre><code>// add an &lt;svg&gt; tag to body:
+  <p>You can add/remove DOM elements using d3 with <code class="javascript">append()</code> and <code class="javascript">remove()</code>.
+<pre><code class="javascript">// add an &lt;svg&gt; tag to body:
 d3.select('body').append('svg');
 // remove all &lt;div&gt;s from the document:
 d3.selectAll('div').remove();
@@ -151,8 +151,8 @@ d3.selectAll('div').remove();
 </section>
 
 <section><h3>d3 DOM Helpers</h3>
-  <p>You can also change text content with <code>text()</code> and html content with <code>html()</code>.
-<pre><code>// change the text in a &lt;p&gt;
+  <p>You can also change text content with <code class="javascript">text()</code> and html content with <code class="javascript">html()</code>.
+<pre><code class="javascript">// change the text in a &lt;p&gt;
 d3.select('p').text('this is new text');
 // add italic text to &lt;p&gt;:
 d3.select('p').html('&lt;i&gt;yo&lt;/i&gt;');
@@ -160,8 +160,8 @@ d3.select('p').html('&lt;i&gt;yo&lt;/i&gt;');
 </section>
 
 <section><h3>d3 DOM Helpers</h3>
-  <p>Set/remove class attributes with <code>classed()</code>:
-<pre><code>// check if the first &lt;p&gt; has class 'warn':
+  <p>Set/remove class attributes with <code class="javascript">classed()</code>:
+<pre><code class="javascript">// check if the first &lt;p&gt; has class 'warn':
 d3.select('p').classed('warn');
 // set the classes 'important' and 'visible' for the first &lt;div&gt;:
 d3.select('div').classed('important visible', true);
@@ -169,8 +169,8 @@ d3.select('div').classed('important visible', true);
 </section>
 
 <section><h3>d3 DOM Helpers</h3>
-  <p><code>d3.select(...).attr()</code> lets you access/change DOM attributes of the selected node:</p>
-<pre><code>// read the x1 attribute of a line:
+  <p><code class="javascript">d3.select(...).attr()</code> lets you access/change DOM attributes of the selected node:</p>
+<pre><code class="javascript">// read the x1 attribute of a line:
 var x1 = d3.select('line').attr('x1');
 // ... then change it:
 d3.select('line').attr('x1', x1 + 40);
@@ -178,8 +178,8 @@ d3.select('line').attr('x1', x1 + 40);
 </section>
 
 <section><h3>d3 DOM Helpers</h3>
-  <p><code>d3.select(...).style()</code> lets you access/change the CSS attributes of the selected node:</p>
-<pre><code>// get the opacity of a &lt;p&gt;
+  <p><code class="javascript">d3.select(...).style()</code> lets you access/change the CSS attributes of the selected node:</p>
+<pre><code class="javascript">// get the opacity of a &lt;p&gt;
 var op = d3.select('p').style('opacity');
 // change all &lt;p&gt;s opacities:
 var psNum = d3.selectAll('p').size();

@@ -1,0 +1,190 @@
+<section><h1 class="title">d3 data joins</h1></section>
+
+<section>
+  <h3>Data joins</h3>
+  <p>(This is the heart of d3 and where the name "data-driven documents" comes from)</p>
+</section>
+
+<section>
+<h3>Data joins</h3>
+<p>How do we tie our data to our DOM elements?</p>
+</section>
+
+<section>
+  <h3>Data joins</h3>
+  <p>d3 provides the function <code>data()</code> for its selectors:</p>
+<pre><code class="javascript">d3.selectAll('p').data(myData);</code></pre>
+<a class="source" href="http://bost.ocks.org/mike/join/" target="_blank"><p>Bostock: Thinking With Joins</p></a>
+</section>
+
+<section>
+  <h3>Data joins</h3>
+  <p>Let's have a look at code/d3-joins/01_data-join.html...</p>
+</section>
+
+<section>
+  <h3>Data joins</h3>
+  <p>Remember the mysterious <code>d</code> parameter from the d3 functions?</p>
+<pre><code class="javascript">d3.select('p')
+  .style('color', function(d){
+    return d.color;
+  });</code></pre>
+  <p>THIS is your __data__ !</p>
+</section>
+
+<section>
+  <h3>Data joins</h3>
+  <p>Let's build on this in 01_data-join.html!</p>
+  <aside class="notes">first, change the text of the ps based on data, then the color and background</aside>
+</section>
+
+<!-- d3 enter -->
+
+<section><h1>Dynamically adding elements</h1></section>
+
+<section><h3>Dynamically adding elements</h3>
+  <p>We'd want to add html-elements based on the data.
+    Let's try that with code/d3-joins/02_fixed_data.html.</p>
+  <aside class="notes">Do it with regular d3 and a for-loop first.</aside>
+  </section>
+
+<section><h3>Dynamically adding elements</h3>
+  <p>There's a better way for that in d3 (remember d3 being declarative instead of imperative?)</p>
+  <p>But it will also take us deeper into the very (weird) heart of d3...</p>
+</section>
+
+<section><h3>Dynamically adding elements</h3>
+  <p>Enter the <code>enter()</code> function.<br/>
+  <code>enter()</code> returns a selection with placeholder nodes for each elements of the data that's missing in the DOM.</p>
+</section>
+
+<section><h3>Dynamically adding elements</h3>
+  <pre><code class="javascript">var missingNodes = d3.select('#chart')
+  .selectAll('p')
+  .data(myData)
+  .enter();
+
+  console.log(missingNodes.nodes());
+  </code></pre>
+<pre>
+=> (5) [A, A, A, A, A]
+</pre>
+</section>
+
+<section><h3>Dynamically adding elements</h3>
+  <p>Using <code>enter()</code> we can now add new nodes:</p>
+<pre><code class="javascript">d3.select('#chart')
+    .selectAll('p')
+    .data(myData)
+    .enter()
+    .append('p');
+</code></pre>
+</section>
+
+<section><h3>Dynamically adding elements</h3>
+  <p>... and even build on them:</p>
+<pre><code class="javascript">d3.select('#chart')
+  .selectAll('p')
+  .data(myData)
+  .enter()
+  .append('p')
+  .text(function(d,i){
+    return "This node has data " + d;
+  });
+</code></pre>
+</section>
+
+<section><h3>Dynamically adding elements</h3>
+  <p>Let's try that with code/d3-joins/02_fixed_data.html.</p>
+  <aside class="notes">Now, use d3 enter to create nodes. Also, run enter() once more when the nodes have been created - its returns an empty selection then.</aside>
+</section>
+
+<section><h3>Dynamically adding elements</h3>
+  <p>Remember when we said that d3 was built for SVG?<br/>
+    Let's see about that and try building a bar chart (finally!)
+    based on code/d3-joins/02_fixed_data.html</p>
+  <aside class="notes">create an SVG element, add bars based on data using d3.enter()</aside>
+</section>
+
+<section><h3>Dynamically adding elements</h3>
+  <p>But what about the <i>Dynamically</i> in the title here?<br/>
+    Let's work with code/d3-joins/03_dynamic_data.html instead.</p>
+  <aside class="notes">create an SVG element, first add bars, then add circles at random positions.</aside>
+</section>
+
+<!-- dynamically updating + removing elements -->
+
+<section><h1>Dynamically updating elements</h1></section>
+
+<section><h3>Dynamically updating elements</h3>
+  <p>Similar to <code>enter()</code>, <code>exit()</code> returns a selection of all DOM elements that don't have corresponding data.</p>
+</section>
+
+<section><h3>Dynamically updating elements</h3>
+<pre><code class="javascript">d3.select('#chart')
+  .selectAll('p')
+  .data(myData)
+  .exit()
+  .remove()
+</code></pre>
+</section>
+
+<section><h3>Dynamically updating elements</h3>
+  <p><code>merge(GROUP)</code> lets you merge a selection with another.</p>
+  <pre><code class="javascript">var enter = d3.select('#chart')
+    .selectAll('circle')
+    .data(myData)
+    .enter();
+  var merge = d3.select('#chart').selectAll('circle').merge(enter);
+  </code></pre>
+</section>
+
+<!-- enter, update, exit -->
+<section><h1>Enter, Update, Exit</h1><h3>(a.k.a: the General Update Pattern)</h3></section>
+
+<section class="full-vertical white" data-background="url(md/08_d3-joins/d3-join.png)">
+  <a class="source" href="https://bost.ocks.org/mike/join/" target="_blank"><p>Bostock: Thinking with Joins</p></a>
+</section>
+
+<section><h3>Enter, Update, Exit</h3>
+<pre><code class="javascript">var circle = svg.selectAll("circle")
+    .data(data);
+  
+  circle.exit().remove();
+  
+  circle.enter().append("circle")
+      .attr("r", 2.5)
+    .merge(circle)
+      .attr("cx", function(d) { return d.x; })
+      .attr("cy", function(d) { return d.y; });
+</code></pre>
+<a class="source" href="https://bost.ocks.org/mike/join/" target="_blank"><p>Bostock: Thinking with Joins</p></a>
+</section>
+
+<section><h3>Enter, Update, Exit</h3>
+  <p>Why declarative?</p>
+  <ul><li>works with changing data (realtime, interaction)</li>
+    <li>Simpler code (less errors, easier debugging)</li>
+  </ul>
+</section>
+
+<section><h3>Dynamically updating elements</h3>
+  <p>Let's try it on code/d3-joins/04_dynamic_update.html.</p>
+</section>
+
+<!-- animations -->
+
+<section><h1>d3 Animations</h1></section>
+
+<section><h3>d3 Animations</h3>
+  <p>Animations in d3 are super-simple: Just add <code>.transition()</code> between your
+    selections and <code>.attr()/.style()</code>.
+<pre><code class="javascript">// non-animated:
+d3.selectAll('rect').style('opacity', 0);
+// animated:
+d3.selectAll('rect').transition().style('opacity', 0);</code></pre>
+</section>
+
+<section><h3>d3 Animations</h3>
+  <p>Let's make our animations in code/d3-joins/04_dynamic_update.html nicer!</p>
+</section>
