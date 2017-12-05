@@ -1,0 +1,136 @@
+<section><h1 class="title">d3 interaction</h1></section>
+
+<section>
+  <h3>d3 interaction</h3>
+  <p>d3 comes with varied support for interaction: event handlers and more specific tools for brushing, zooming... </p>
+</section>
+
+<section><h1>Basic interaction</h1></section>
+
+<section><h3>Basic interaction</h3>
+  <p>d3's <code>.on</code> function ties DOM-event handlers to selections.</p>
+  <pre><code class="javascript">var circles = svg.selectAll('circle')
+  .on('mouseover', function(d){
+    console.log(this);
+    console.log(d);
+  });
+</code></pre>
+</section>
+
+<section><h3>Basic interaction</h3>
+  <p>Let's try it on: code/d3-interaction/01_bitcoin_vis.html (or use your own!)</p>
+  <p>First, console.log elements that have been interacted with. Then, highlight them.</p>
+</section>
+
+<section><h3>Basic interaction</h3>
+  <p>Useful DOM-events:</p>
+  <ul><li>click</li><li>mouseover</li><li>mousemove</li><li>mouseout</li>
+    <li>touchstart</li><li>touchmove</li><li>touchend</li>
+  </ul>
+  <a class="source" href="https://developer.mozilla.org/en-US/docs/Web/Events#Standard_events" target="_blank"><p>Mozilla: DOM-events</p></a>  
+</section>
+
+<section><h3>Basic interaction</h3>
+  <p>Sometimes very useful: <code>pointer-events: none</code> (CSS)</p>
+</section>
+
+<section><h3>Tooltips</h3>
+  <p>Most common type of interaction: tooltips!<br/>
+    Not directly supported in d3, but easy to build yourself:</p>
+    <a href="http://bl.ocks.org/d3noob/a22c42db65eb00d4e369" target="_blank"><p>d3noob: Simple d3.js tooltips</p></a>
+  <p>Or use <a href="http://qtip2.com/" target="_blank">qTip2</a> or one of the other 75.000 tooltip libraries out there...</p>
+  </section>
+
+<!-- MORE TRANSITIONS -->
+
+<section><h1>More on transitions</h1></section>
+
+<section><h3>More on transitions</h3>
+  <p>Transitions can be tweaked using:</p>
+  <pre><code class="javascript">var t = d3.transition();
+// add initial delay:
+t.delay(500);
+// change duration:
+t.duration(5000);
+// add event handlers:
+t.on("end", function(d){ ... });
+  </code></pre>
+</section>
+
+<section><h3>More on transitions</h3>
+  <p>Want to be really fancy? Change the easings on the transitions!</p>
+  <pre><code class="javascript">d3.transition().ease(d3.easeBounceInOut)</code></pre>
+  <a href="https://github.com/d3/d3-ease" target="_blank"><p>d3-ease</p></a>
+  <a href="https://github.com/d3/d3-transition/blob/master/README.md#the-life-of-a-transition" target="_blank"><p>d3: Life of a transition</p></a>
+</section>
+
+<section><h3>Basic interaction</h3>
+  <p>Let's try it on: code/d3-interaction/02_more_transitions.html</p>
+</section>
+
+
+<section><h1>Advanced interaction</h1></section>
+
+<section><h3>Advanced interaction</h3>
+  <p>d3 has several specific <i>behaviors</i> supporting brushing, dragging, ...</p>
+</section>
+
+<section><h1>Drag</h1></section>
+
+<section><h3>Drag</h3>
+  <p>Read up on <a href="https://github.com/d3/d3-drag" target="_blank">d3-drag</a> and <a href="https://github.com/d3/d3-selection/blob/master/README.md#event" target="_blank">d3.event</a>,
+    then use the basic d3-template from code/d3-basics/template.html to:</p>
+  <p>Draw some random circles on screen. Then make them draggable.</p>
+</section>
+
+<!-- ZOOM -->
+
+<section><h1>Zoom</h1></section>
+
+<section><h3>Zoom</h3>
+  <p>d3's zoom makes handling zoom+pan easier.</p>
+  <a href="https://github.com/d3/d3-zoom" target="_blank"><p>d3-zoom</p></a>
+</section>
+
+<section><h3>Zoom</h3>
+  <p>Let's look at examples:</p>
+    <a href="https://bl.ocks.org/mbostock/4e3925cdc804db257a86fdef3a032a45" target="_blank"><p>Mike Bostock: Pan & Zoom II</p></a>
+    <a href="https://bl.ocks.org/mbostock/db6b4335bf1662b413e7968910104f0f" target="_blank"><p>Mike Bostock: Pan & Zoom Axes</p></a>
+</section>
+
+
+<!-- BRUSHES -->
+
+<section><h1>Brushes</h1></section>
+
+<section><h3>Brushes</h3>
+  <p>Brushes let you select parts of a chart:</p>
+  <a href="http://selfiecity.net/selfiexploratory/" target="_blank"><p>Selfiecity: Selfiexploratory</p></a>
+</section>
+
+<section><h3>Brushes</h3>
+  <p>d3 (of course) has a helper function for that: <code>d3.brush()</code>.
+  <a href="https://github.com/d3/d3-brush" target="_blank"><p>d3-brush</p></a>
+</section>
+
+<section><h3>Brushes</h3>
+  <p>Go back to your circle-example from before. Instead of dragging them, add a brush and highlight them
+    when they're inside the brush.</p>
+</section>
+
+<section><h3>Brushes</h3>
+  <p>Another cool brushing demo:</p>
+  <a href="https://bl.ocks.org/mbostock/0d20834e3d5a46138752f86b9b79727e" target="_blank"><p>Mike Bostock: Mona Lisa Histogram</p></a>
+</section>
+
+<!-- MORE -->
+
+<section><h3>Combining behaviors</h3>
+  <p>You can also combine d3 behaviors:</p>
+  <a href="https://bl.ocks.org/mbostock/34f08d5e11952a80609169b7917d4172" target="_blank"><p>Mike Bostock: Brush & Zoom</p></a>
+  <p>(even more advanced - enjoy :)</p>
+</section>
+
+<section><h3>More tools:</h3>
+  <a href="http://d3-annotation.susielu.com/" target="_blank"><p>d3-annotation by Susie Lu</p></a>
+</section>

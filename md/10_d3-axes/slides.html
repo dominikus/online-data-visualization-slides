@@ -2,6 +2,59 @@
 
 <section>
   <h3>Axes</h3>
-  <p>d3 comes with a built-in axis generator.</p>
+  <p>d3 comes with built-in axes generators.</p>
   <a class="source" href="https://github.com/d3/d3-axis" target="_blank"><p>Github: d3-axes</p></a>
 </section>
+
+<section>
+  <h3>Axes</h3>
+    <p>Axes are based on scales. d3 produces four different ones:<br/>
+    <pre><code class="javascript">d3.axisTop(scale);
+d3.axisRight(scale);
+d3.axisBottom(scale);
+d3.axisLeft(scale);
+    </code></pre>
+</section>
+
+<section>
+    <h3>Axes</h3>
+      <p>They can be called into existence from a selection:<br/>
+      <pre><code class="javascript">var myScale = d3.scaleLinear()...;
+
+var myAxis = d3.axisLeft(myScale);
+svg.append("g")
+  .call(myAxis);
+      </code></pre>
+  </section>
+
+  <section><h3>Axes</h3>
+    <p>Let's try them out: code/d3-scales/03_axes_missing.html.</p>
+  </section>
+  
+  <section><h1>Axes config</h1></section>
+  <section>
+      <h3>Axes config</h3>
+        <p><code>ticks</code> is useful for configuring the axis generator:<br/>
+        <pre><code class="javascript">var myAxis = d3.axisLeft(myScale);
+// use 5 ticks:
+myAxis.ticks(5);
+// format ticks:
+myAxis.ticks(5, "s")
+        </code></pre>
+    </section>
+
+<section><h3>Axes config</h3>
+  <p>d3 formatting:</p>
+  <a href="https://github.com/d3/d3-format" target="_blank"><p>d3.format</p></a>
+  <a href="https://github.com/d3/d3-time-format" target="_blank"><p>d3.timeFormat</p></a>
+</section>
+
+<section><h1>Axes config</h1></section>
+    <section>
+        <h3>Axes config</h3>
+          <p>Use <code>tickValues</code> to explicitly set ticks:<br/>
+          <pre><code class="javascript">var myAxis = d3.axisLeft(myScale);
+myAxis.tickValues([0, 0.5, 1]);
+          </code></pre>
+      </section>
+  

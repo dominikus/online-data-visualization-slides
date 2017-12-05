@@ -1,0 +1,178 @@
+<section><h1 class="title">d3 shapes</h1></section>
+
+<section>
+  <h3>d3 Shapes</h3>
+  <p>d3 comes with various shape generators for arcs, pies, lines, areas, ...</p>
+  <p>Basically everything that's missing from SVG.</p>
+</section>
+
+<!-- LINES -->
+
+<section><h1>Lines</h1></section>
+
+<section><h3>Lines</h3>
+  <p>SVG paths:</p>
+  <pre><code class="html">&lt;path d="M 10 10 L 300 200 l -50 -50"&gt;&lt;/path&gt;</code></pre>
+</section>
+
+<section><h3>Lines</h3>
+  <p>d3's line generator can be used to generate those nasty <code>d</code> attributes.</p>
+  <pre><code class="javascript">var line = d3.line();
+
+svg.append('path')
+  .attr('d', line(data));</code></pre>
+</section>
+
+<section><h3>Lines</h3>
+  <p>Have a look at the docs:</p>
+  <a href="https://github.com/d3/d3-shape#lines" target="_blank"><p>d3-shape#lines</p></a>
+  <p>... and turn our bitcoin plot into a line chart!</p>
+</section>
+
+<!-- ARCS -->
+
+<section><h1>Curves</h1></section>
+
+<section><h3>Curves</h3>
+<p>SVG paths can also be used to draw curves:</p>
+<pre><code class="html">&lt;path d="M10 80 Q 95 10 180 80"
+  stroke="black" fill="transparent"/&gt;</code></pre>
+</section>
+
+<section><h3>Curves</h3>
+<p>d3 - again - has some handy generators for curves/arcs: <code>d3.arc()</code></p>
+<pre><code class="javascript">var arc = d3.arc();
+    
+arc({
+  innerRadius: 0,
+  outerRadius: 100,
+  startAngle: 0,
+  endAngle: Math.PI / 2
+});</code></pre>
+<a class="source" href="https://github.com/d3/d3-shape/blob/master/README.md#arcs" target="_blank"><p>d3-shape#arc</p></a>
+</section>
+
+<section><h3>Curves</h3>
+  <p>Use the d3-template and d3.arc to generate random arcs across a site!</p>
+</section>
+
+<!-- CANVAS -->
+
+<section><h1>Canvas</h1></section>
+
+<section><h3>Canvas</h3><p>As a small aside: let's talk about rendering technologies.</p></section>
+
+<section><h3>Canvas</h3>
+  <p>Canvas is a bitmap-based alternative to SVG's vector format. It is not scalable and opaque. <br/>But it's usually faster!</p>
+</section>
+
+<section><h3>Canvas</h3>
+  <pre><code class="javascript">var canvas = document.querySelector('canvas');
+var ctx = canvas.getContext('2d');
+  </code></pre>
+</section>
+
+<section><h3>Canvas</h3>
+  <p>Canvas uses sequential commands with an implicit state for drawing:</p>
+<pre><code class="javascript">ctx.fillStyle = "rgb(200,0,0)";  
+ctx.fillRect(10, 10, 55, 50);
+</code></pre>
+<a class="source" target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D"><p>Mozilla: CanvasRenderingContext2D</p></a>
+</section>
+
+<section><h3>Canvas</h3>
+  <p>Examples:</p>
+  <a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/strokeRect" target="_blank"><p>Stroke rect</p></a>
+  <a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/font" target="_blank"><p>Drawing text</p></a>
+  <a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/beginPath" target="_blank"><p>Drawing paths</p></a>
+</section>
+
+<section><h1>Canvas in d3</h1></section>
+
+<section><h3>Canvas in d3</h3>
+  <p>Since v4.0, canvas is a common option in d3-rendering functions.</p>
+  <p>Use the <code>.context()</code> function for shape generators to set a canvas context to automatically
+    render to.</p>
+</section>
+
+<section><h3>Canvas in d3</h3>
+  <pre><code class="javascript">var canvas = document.querySelector('canvas');
+var ctx = canvas.getContext('2d');
+var line = d3.line().context(ctx);
+
+ctx.beginPath();
+line(data);
+...
+  </code></pre>
+</section>
+
+<section><h3>Canvas in d3</h3>
+  <p>Use canvas instead of SVG to draw the bitcoin line chart or the random arcs!</p>
+</section>
+
+
+<!-- PIE CHARTS -->
+
+<section><h1>Pie charts</h1></section>
+
+<section><h3>Pie charts</h3>
+<p>Let's do everyone's favorite: the pie chart.</p>
+<p>d3 has a pie generator (<code>d3.pie()</code>) whose result can be plugged into d3.arc.</p>
+<a class="source" href="https://github.com/d3/d3-shape/blob/master/README.md#pies" target="_blank"><p>d3-shape#pie</p></a>
+</section>
+
+<section><h3>Pie charts</h3>
+  <p>Let's build a pie chart!</p>
+</section>
+
+
+<section><h1>Curves</h1></section>
+
+<section><h3>Curves</h3>
+  <p>d3 has several curve generators:</p>
+  <img data-src="md/13_d3-shapes/basis.png" />
+  <a class="source" href="https://github.com/d3/d3-shape/blob/master/README.md#curves" target="_blank"><p>d3-shape#curves</p></a>
+</section>
+
+<section><h3>Curves</h3>
+  <p>You can plug them into the other line- and area-generators:</p>
+  <pre><code class="javascript">d3.line()
+...
+.curve(d3.curveBasis);
+  </code></pre>
+  <a class="source" href="https://github.com/d3/d3-shape/blob/master/README.md#curves" target="_blank"><p>d3-shape#curves</p></a>
+</section>
+
+<!-- AREA GENERATORS -->
+
+<section><h1>Area</h1></section>
+
+<section><h3>Area</h3>
+  <p>Generate areas with <code>d3.area()</code>:</p>
+<pre><code class="javascript">var area = d3.area()
+  .x( ... )
+  .y(250)  // baseline
+  .y1( ... )
+</code></pre>
+</section>
+
+<!-- BETTER LIFE FLOWERS -->
+
+<section><h1>Shapes + Transitions</h1></section>
+
+<section><h3>Shapes + Transitions</h3>
+  <p>The <code>d</code> attribute of paths can also be animated via d3 transitions!</p>
+  <p>Have a look at code/d3-shapes/01_shape_transitions.html.</p>
+</section>
+
+<section><h3>Shapes + Transitions</h3>
+  <p>Try building the flowers from the OECD Better-Life-Index based on code/d3-shapes/02_bli_flowers.html.</p>
+  <a class="source" href="http://www.oecdbetterlifeindex.org" target="_blank"><p>OECD Better-Life-Index</p></a>
+</section>
+
+<!-- MORE -->
+
+<section><h3>More</h3>
+  <a href="https://medium.com/@mbostock/introducing-d3-shape-73f8367e6d12" target="_blank"><p>Mike Bostock: Introducing d3-shape</p></a>
+  <a href="http://andyshora.com/tweening-shapes-paths-d3-js.html" target="_blank"><p>Andy Shora: Tweening Custom Shapes and Paths in d3.js</p></a>
+</section>
