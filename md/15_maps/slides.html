@@ -52,7 +52,18 @@
 
 <section><h3>MapboxGL</h3>
   <p>Let's build their Hello World example based on code/maps/mapbox-template.html</p>
-  <a class="source" href="https://www.mapbox.com/mapbox-gl-js/api/" target="_blank"><p>MapboxGL API</p></a>
+  <div class="source">
+      <a  href="https://www.mapbox.com/mapbox-gl-js/api/" target="_blank"><p>MapboxGL API</p></a>
+      <a  href="https://www.mapbox.com/mapbox-gl-js/example" target="_blank"><p>MapboxGL Examples</p></a>
+      </div>
+    </section>
+
+<section><h3>MapboxGL</h3>
+  <p>Now: experiment with initial settings. Try to show satellite images, for example.</p>
+  <div class="source">
+  <a  href="https://www.mapbox.com/mapbox-gl-js/api/" target="_blank"><p>MapboxGL API</p></a>
+  <a  href="https://www.mapbox.com/mapbox-gl-js/example" target="_blank"><p>MapboxGL Examples</p></a>
+  </div>
 </section>
 
 <section><h3>MapboxGL</h3>
@@ -74,3 +85,95 @@
   <p>Use it to create your own style, then replace the default style from the example with it.</p>
 </section>
 
+<!-- HEATMAPS -->
+
+<section><h1>Heatmaps</h1></section>
+
+<section><h3>Heatmaps</h3>
+  <p>Creating heatmaps with MapboxGL is pretty easy - let's look at
+    <a href="https://www.mapbox.com/mapbox-gl-js/example/heatmap-layer/" target="_blank">https://www.mapbox.com/mapbox-gl-js/example/heatmap-layer/</a></p>
+</section>
+
+<section><h3>Heatmaps</h3>
+  <p>Choropleths are similarly simple - here's an example:
+    <a href="https://www.mapbox.com/mapbox-gl-js/example/updating-choropleth/" target="_blank">https://www.mapbox.com/mapbox-gl-js/example/updating-choropleth/</a></p>
+  </section>
+
+<!-- SCROLLYTELLING -->
+
+<section><h3>Scrollytelling</h3>
+  <p>Nice example of scrollytelling: <a href="https://www.mapbox.com/mapbox-gl-js/example/scroll-fly-to/" target="_blank">https://www.mapbox.com/mapbox-gl-js/example/scroll-fly-to/</a></p>
+</section>
+
+<!-- GEOJSON -->
+
+<section><h1>GeoJSON</h1></section>
+
+<section><h3>GeoJSON</h3>
+  <p>The most common JSON format for geographic data is GeoJSON.
+    Not as efficient as TopoJSON, but more widespread.</p>
+  </section>
+
+<section><h3>GeoJSON</h3>
+  <p>GeoJSON can be directly plugged into Mapbox:</p>
+<pre><code class="javascript">map.addLayer({
+  'type': 'fill',
+  'source': {
+    'type': 'geojson',
+    'data': GEOJSONDATA
+  },
+});</code></pre>
+</section>
+
+<section><h3>GeoJSON</h3>
+  <p>Check out code/maps/03_mapbox_geojson.html for an example.</p>
+</section>
+
+<!-- INTERACTION -->
+
+<section><h1>Interaction</h1></section>
+
+<section><h3>Interaction</h3>
+<p>Mapbox comes with event handlers - very similar to d3 - and lots of infos in the event object:</p>
+<pre><code class="javascript">map.on('click', function(e){
+  console.log(e.point); // current on-screen position
+  console.log(e.lngLat); // longitude, latitude of cursor 
+});</code></pre>
+</section>
+
+<section><h3>Interaction</h3>
+  <p>Other useful event handlers:</p>
+<pre><code class="javascript">// map has loaded:
+map.on('load', function(){...});
+
+// map starts moving:
+map.on('movestart', function(){...});
+// map stops moving:
+map.on('moveend', function(){...});</code></pre>
+</section>
+
+<!-- PROJECTION -->
+
+<section><h1>Projections</h1></section>
+
+<section><h3>Projections</h3>
+  <p>MapboxGL <code>map</code> objects also support projections out of the box:</p>
+<pre><code class="javascript">// convert lat/lng to screen coords:
+map.project([-122.420679, 37.772537]);
+
+// convert screen coords to lat/lng:
+map.unproject([540, 288]);
+</code></pre>
+
+<!-- COMBINING SVG + MAPBOXGL -->
+
+<section><h1>Mapbox + d3</h1></section>
+
+<section><h3>Mapbox + d3</h3>
+  <p>Use an SVG/Canvas overlay on top of the Mapbox element to display data using d3.</p>
+</section>
+
+<section><h3>Mapbox + d3</h3>
+  <p>Start with code/maps/04_mapbox_d3. Visualize population density as circles on top of the map.</p>
+  <img data-src="md/15_maps/mapbox-d3.png"/>
+</section>
