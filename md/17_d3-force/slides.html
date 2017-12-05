@@ -1,0 +1,162 @@
+<section><h1 class="title">Forces + Voronoi</h1></section>
+
+<!-- NETWORKS -->
+<section><h1>Networks</h1></section>
+
+<section><h3>Networks</h3>
+<p>You might have noticed that we've ignored one type of data completely so far: networks.</p>
+</section>
+
+<section><h3>Networks</h3>
+<p>Networks have their problems:</p>
+<ul><li>visualizations are harder to read</li>
+<li>do not scale well</li>
+<li>harder to represent (tabular?)</li></ul>
+<section>
+
+<section><h3>Networks</h3>
+  <p>Network data consists of <b>nodes</b> that have <b>attributes</b> and are connected via <b>links</b> (which can also have attributes)</p>
+</section>
+
+<section><h3>Networks</h3>
+  <p>It can be represented as a Javascript object thusly:</p>
+<pre><code class="javascript">{
+  "nodes": [{"id": "node1"}, ...],
+  "links": [{"source": "node1", "target": "node2"}]
+}</code></pre>
+  <a class="source" href="https://bl.ocks.org/mbostock/ad70335eeef6d167bc36fd3c04378048#miserables.json" target="_blank"><p>Les Miserables network</p</a>
+</section>
+
+<!-- NODE-LINK-DIAGRAMS -->
+
+<section><h1>Node-link diagrams</h1></section>
+
+<section><h3>Node-link diagrams</h3>
+  <p>A common way to visualize networks are node-link diagrams. Each node becomes a dot, links become lines between dots. Easily turns into a hairball.</p>
+  <img data-src="md/17_d3-force/node-link.png" />
+</section>
+
+<section><h3>Node-link diagrams</h3>
+  <p>Major challenge of node-link diagrams: how to do the layout.<br/>
+    One common approach is the <b>force-directed layout</b>, a physics simulation where nodes repel each other, while being attracted trough their links.</p>
+  </section>
+
+<section><h3>Node-link diagrams</h3>
+  <p>d3 comes with a built-in force simulation in <code>d3.force</code>.</p>
+  <a class="source" href="https://github.com/d3/d3-force" target="_blank"><p>d3-force</p></a>
+</section>
+
+<section><h3>Node-link diagrams</h3>
+  <p>To work with d3-force, use an array of nodes. The simulation adds the following attributes:</p>
+  <pre><code class="javascript">var nodes = [{
+x: 0, // x-position
+y: 0, // y-position
+vx: 0, // x-velocity
+vy: 0 // y-velocity
+}]</code></pre>
+</section>
+
+<section><h3>Node-link diagrams</h3>
+  <p>You can also add <code>fx</code> and <code>fy</code> attributes to fix the node
+  at position (fx, fy).</p>
+</section>
+
+<section><h3>Node-link diagrams</h3>
+  <p>d3-force is flexible enough to support all kinds of physics simulations. You can add specific <b>forces</b> with <code>.force()</code>. 
+    d3 comes with several predefined forces such as centering, collision and links.</p>
+    <a class="source" href="https://github.com/d3/d3-force#forces" target="_blank"><p>d3-force#forces</p></a>
+</section>
+
+<section><h3>Node-link diagrams</h3>
+<ul><li><b>d3.forceLink</b> - forces working along links</li>
+  <li><b>d3.forceManyBody</b> - forces among all nodes (gravity)</li>
+  <li><b>d3.forceCenter</b> - drags nodes to the center</li>
+  <li><b>d3.forceCollision</b> - simulates collisions</li>
+</ul>
+</section>
+
+<section><h3>Node-link diagrams</h3>
+  <p>Use the <code>tick</code> event of forceSimulation to redraw!</p>
+<pre><code class="javascript">var redraw = function(){ ... }
+var sim = d3.forceSimulation()
+  .on('tick', redraw);
+</code></pre>
+</section>
+
+<section><h3>Node-link diagrams</h3>
+  <p>Let's build a node-link diagram based on the Les Miserables dataset
+    (code/d3-forces/01_miserable.html)</p>
+</section>
+
+<!-- ALPHA -->
+<section><h1>Lifecycle of sims</h1></section>
+
+<section><h3>Lifecycle of sims</h3>
+  <p>Force simulations use an internal value called <b>alpha</b>. Every tick the value of alpha is reduced (set via <code>alphaDecay</code>). Once it's lower
+    than <code>alphaMin</code>, the simulation stops.</p>
+  </section>
+
+<section><h3>Lifecycle of sims</h3>
+  <p>Use <code>.alpha()</code> and <code>.restart()</code> to restart the simulation:</p>
+<pre><code class="javascript">sim.alpha(1);
+sim.restart();
+</code></pre>
+</section>
+
+
+<!-- COLLISIONS -->
+
+<section><h1>Collisions</h1></section>
+
+<section><h3>Collisions</h3>
+<p>You can also use d3-force to simulate collisions. Have a look at d3-forceCollide, then create a bunch of random circles and experiment with collisions!</p>
+</section>
+
+<!-- VORONOI DIAGRAMS -->
+
+<section><h1>Voronoi</h1></section>
+
+<section><h3>Voronoi</h3>
+  <p>Voronoi diagrams describe a partitioning of a plane based on points so that everything in a Voronoi "cell" is closest to its seed point.</p>
+  <img data-src="md/17_d3-force/voronoi.png" />
+  <a class="source" href="https://bl.ocks.org/mbostock/6675193" target="_blank"><p>Mike Bostock: Canvas Voronoi</p></a>
+</section>
+
+<section><h3>Voronoi</h3>
+  <p>So what? Voronoi partitionings are great to improve interaction (e.g., for scatter plots). Make the Voronoi cells interactive instead of the (super small) points.</p>
+</section>
+
+<section><h3>Voronoi</h3>
+  <p><code>d3-voronoi</code> calculates Voronoi cells based on a set of seed points:</p>
+  <pre><code class="javascript">var part = d3.voronoi()
+  .extent([[0,0], [w,h]])
+  (points);
+  </code></pre>
+</section>
+
+<section><h3>Voronoi</h3>
+  <p>Set accessor functions for x and y using <code>.x()</code> and <code>.y()</code>.</p>
+  <pre><code class="javascript">var part = d3.voronoi()
+      .x(function(d){ return xScale(d.date); })
+      .y(function(d){ return yScale(d.value); })
+      (points);
+      </code></pre>
+</section>
+
+<section><h3>Voronoi</h3>
+  <p>d3-voronoi returns the result of the voronoization as:</p>
+  <ul><li><code>.polygons()</code> - an array of polygons</li>
+    <li><code>.triangles()</code> - an array of (Delauney) triangles</li>
+    <li><code>.links()</code> - an array of triangle links</li>
+  </ul>
+</section>
+
+<section><h3>Voronoi</h3>
+  <p>Build a scatterplot based on code/d3-forces/03_voronoi_scatter.html.
+    Then, add highlighting based on a Voronoi diagram.</p>
+  </section>
+
+<!-- MORE -->
+<section><h3>More</h3>
+  <ul><li><a href="http://vallandingham.me/force_talk/#0" target="_blank">Jim Vallandingham: Using and Abusing the Force</a></li></ul>
+</section>

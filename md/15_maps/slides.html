@@ -1,0 +1,76 @@
+<section><h1 class="title">Maps</h1></section>
+
+<section>
+  <h3>Maps</h3>
+  <p>One of the most common visualization tasks: putting stuff on a map!</p>
+</section>
+
+<section><h1>Projections</h1></section>
+
+<section><h3>Projections</h3>
+  <p>The main challenge of that: the 3D-ness of the real world.</p>
+  <p><b>Projections</b> are functions to map 3D coordinate to a 2D plane.</p>
+</section>
+
+<section><h3>Projections</h3>
+  <p>And: there's no right or wrong one! So we have a whole zoo of them!</p>
+  <img data-src="md/15_maps/map_projections.png"/>
+  <a class="source" href="https://xkcd.com/977/" target="_blank"><p>XKCD: Map Projections</p></a>
+</section>
+
+<section><h3>Projections</h3>
+  <p>d3 has a whole spinoff library with tons of projections:</p>
+  <a href="https://github.com/d3/d3-geo-projection/" target="_blank"><p>d3-geo-projection</p></a>
+</section>
+
+<section><h3>Projections</h3>
+  <p>And it's relatively easy to use them - let's try it
+    with code/maps/01_maps_d3.html.</p>
+  </section>
+
+<section><h3>Projections</h3>
+  <p>Many d3 map examples use TopoJSON - Mike Bostock's optimized JSON format for storing geo data.</p>
+  <a class="source" href="https://bost.ocks.org/mike/topology/" target="_blank"><p>Mike Bostock: How To Infer Topology</p></a>
+</section>
+
+<!-- MAPBOX GL -->
+
+<section><h1>MapboxGL</h1></section>
+
+<section><h3>MapboxGL</h3>
+  <p>d3 is great for projecting things - but we probably also want to show those nice map tiles like in Google Maps et al.</p>
+</section>
+
+<section><h3>MapboxGL</h3>
+  <p>Mapbox is a (commercial) way to show maps - but: very convenient to use, with a free plan.</p>
+  <a class="source" href="http://www.mapbox.com" target="_blank"><p>Mapbox</p></a>
+</section>
+
+<section><h3>MapboxGL</h3>
+  <p>Mapbox provides several APIs - their fastest and latest is MapboxGL, based on WebGL.</p>
+</section>
+
+<section><h3>MapboxGL</h3>
+  <p>Let's build their Hello World example based on code/maps/mapbox-template.html</p>
+  <a class="source" href="https://www.mapbox.com/mapbox-gl-js/api/" target="_blank"><p>MapboxGL API</p></a>
+</section>
+
+<section><h3>MapboxGL</h3>
+  <p>While the basic example works with the default access token, make sure to use your own at some point:<br/>
+    <a href="https://www.mapbox.com/studio/account/tokens/" target="_blank">https://www.mapbox.com/studio/account/tokens/</a>
+  </p>
+</section>
+
+<!-- MAPBOX STUDIO -->
+
+<section><h1>Mapbox Studio</h1></section>
+
+<section><h3>Mapbox Studio</h3>
+  <p>Mapbox comes with a cool web-based style editor: Mapbox Studio.</p>
+  <a href="https://www.mapbox.com/studio/styles/" target="_blank"><p>https://www.mapbox.com/studio/styles/</p></a>
+</section>
+
+<section><h3>Mapbox Studio</h3>
+  <p>Use it to create your own style, then replace the default style from the example with it.</p>
+</section>
+
