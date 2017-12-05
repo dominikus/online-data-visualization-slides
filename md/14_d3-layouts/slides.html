@@ -47,11 +47,67 @@
     the d3 hierarchical layouts can use it.</p>
   </section>
 
-  <!-- ZOOM -->
+<section><h3>Hierarchies</h3>
+  <p>You can use <code>d3.stratify</code> to do that:</p>
+  <pre><code class="javascript">var data = [{}, {}, {}, ...];
 
+var root = d3.stratify()
+  .parentId(function(d){ return d.parent; })
+  (data);
+  </code></pre>
+</section>
 
+<section><h3>Hierarchies</h3>
+  <p>Try loading and stratifying the data in code/d3-layouts/02_hierarchical_data.html</p>
+</section>
 
-<!-- BRUSHES -->
+<section><h3>Hierarchies</h3>
+  <p>One special weirdness of <code>d3.stratify</code>: every parent
+    node needs it own entry in the data!</p>
+<pre><code>id; region;
+Netherlands; Europe;
+Europe; ;     &lt;-- required!
+</code></pre>
+</section> 
 
+<section><h3>Hierarchies</h3>
+  <p>Stratified data becomes a <code>d3.hierarchy</code> object:</p>
+  <ul><li><b>.descendants()</b> - returns all children of a node as a flat array</li>
+    <li><b>.sum(value)</b> - calculates a node's value (see below)</li>
+    <li><b>.depth</b> - depth in the tree</li></ul>
+  
+    <a class="source" href="https://github.com/d3/d3-hierarchy#hierarchy" target="_blank"><p>d3-hierarchy#hierarchy</p></a>
+  </section>
+
+<section><h3>Hierarchies</h3>
+  <p>The good news: once the data has been stratified, drawing it is usually very straightforward!</p>
+</section>
+
+<!-- CIRCLE PACKING -->
+
+<section><h1>Circle packing</h1></section>
+
+<section><h3>Circle packing</h3>
+  <p>To put that to the test: let's draw a circle packing viz based on the data!</p>
+  <img data-src="md/14_d3-layouts/circle-pack.png" />
+</section> 
+
+<!-- TREES & TREEMAPS -->
+
+<section><h1>Trees & Treemaps</h1></section>
+
+<section><h3>Trees & Treemaps</h3>
+  <p>Let's have a look at a Mike Bostock example for drawing a tree based on <code>d3.tree</code>:</p>
+  <a class="source" href="https://bl.ocks.org/mbostock/4339184"><p>Mike Bostock: Tidy Tree</p></a>
+</section>
+
+<section><h3>Trees & Treemaps</h3>
+  <p>Change the world pack layout from before to a tree layout!</p>
+</section>
+
+<section><h3>Trees & Treemaps</h3>
+  <p>Finally, one last example: the treemap.</p>
+  <a class="source" href="https://bl.ocks.org/mbostock/6bbb0a7ff7686b124d80" target="_blank"><p>Mike Bostock: Treemap</p></a>
+</section>
 
 <!-- MORE -->
