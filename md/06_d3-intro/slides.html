@@ -38,7 +38,7 @@ d3.select('h1.update').html('New headline!');
     <h3>d3.js Basics</h3>
     <p>... but: it brings with it various additions, specifically geared towards datavis!</p>
     <pre><code class="javascript">// define a color scale:
-var scale = d3.scale.category10();
+var scale = d3.scaleCategory10();
 // recolor &lt;p&gt;s:
 d3.selectAll('p')
   .style('background-color', function(d,i){
@@ -78,6 +78,13 @@ d3.select('p').text('hullo'); // set the text content
 <section>
   <h3>d3.js Basics</h3>
   <p>d3.js follows the <b>declarative approach</b> - it talks about the <i>What</i>, not the <i>How</i>.</p>
+</section>
+
+<section>
+  <h3>d3.js Basics</h3>
+  <p>Also, d3.js recently underwent the transition from version 3 to 4 - with some breaking changes. Check each
+    example that you find for the version number!</p>
+  <a href="https://iros.github.io/d3-v4-whats-new/#1" target="_blank"><p>Irene Ros: d3 v4 - what's new?</p></a>
 </section>
 
 <section><h3>More resources:</h3>

@@ -1,2 +1,323 @@
 <section><h1 class="title">Responsive + Performance</h1></section>
 
+<section class="full-vertical white" data-background="url(md/16_responsive/oatmeal.jpg)">
+<a class="source" href="http://theoatmeal.com/comics/mobile_website" target="_blank"><p>The Oatmeal</p></a>
+</section>
+
+<section><h1>Responsive Web Design</h1></section>
+
+<section><h3>Responsive Web Design</h3>
+  <img data-src="md/16_responsive/bad-responsive.jpg" />
+</section>
+
+<section><h3>Responsive Web Design</h3>
+  <p>Email Fallback:</p>
+  <img data-src="md/16_responsive/email-fallback.png" />
+</section>
+
+<section><h1>Responsive Visualizations</h1></section>
+
+<section><h3>Responsive Visualizations</h3>
+  <img data-src="md/16_responsive/nyt1_age_political.png" />
+  <img data-src="md/16_responsive/nyt2_ferguson.png" />
+  <img data-src="md/16_responsive/nyt3_rent.png" />
+</section>
+
+<section><h3>Responsive Visualizations</h3>
+  <a href="http://mobilev.is/" target="_blank"><p>Bocoup: Mobile Vis</p></a>
+  <a href="http://mobileinfovis.com/#smartphone" target="_blank"><p>Sebastian Sadowski: Mobile Infovis</p></a>
+</section>
+
+<!-- adaptive vs responsive -->
+
+<section><h3>Responsive Web Design</h3>
+  <p>Major form factors/devices:</p>
+  <ul><li class="fragment">Desktops/Laptops</li>
+    <li class="fragment">Tablets</li>
+    <li class="fragment">Phones</li>
+  </ul>
+</section>
+
+<section><h3>Responsive Web Design</h3>
+  <p>Differences:</p>
+  <ul><li>Screen size</li>
+    <li>Input modality</li>
+    <li>Sensors</li>
+  </ul>
+</section>
+
+<section><h3>Responsive Web Design</h3>
+  <p class="red">Differences:</p>
+  <ul class="red"><li>Environment</li>
+    <li>Mindset</li>
+    <li>Ease of use</li>
+    <li>Context</li>
+  </ul>
+</section>
+
+<section><h3>Responsive Web Design</h3>
+  <p>Responsive -> <span class="red">Adaptive</span> Web Design</p>
+  <p>Device-centric -> <span class="red">User-centric</span></p>
+</section>
+
+<!-- techniques -->
+
+<section><h1>HTML/CSS Techniques</h1></section>
+
+<!-- META TAGS -->
+
+<section><h3>HTML/CSS Techniques</h3>
+  <p>Use the right meta tags:</p>
+<pre><code class="html">&lt;meta
+  name="viewport"
+  content="width=device-width, initial-scale=1"
+&gt;
+</code></pre>
+</section>
+
+<!-- RELATIVE SIZES -->
+
+<section><h3>HTML/CSS Techniques</h3>
+  <p>Use relative sizes instead of absolute ones:</p>
+<pre class="red"><code class="css">#viz {
+  width: 960px;
+}</code></pre>
+<pre><code class="css">#viz {
+  width: 80%;
+}</code></pre>
+</section>
+
+<!-- FONTS (ems) -->
+
+<section><h3>HTML/CSS Techniques</h3>
+  <p>Use (r)em instead of px/pt for font sizes:</p>
+<pre><code class="css">.title {
+  font-size: 2em;
+}
+
+body {
+  font-size: 24px;
+}
+</code></pre>
+</section>
+
+<!-- MEDIA QUERIES -->
+
+<section><h3>HTML/CSS Techniques</h3>
+  <p>CSS media queries let you fine-tune for specific devices:</p>
+<pre><code class="css">#nav {
+  width: 100%;
+}
+
+@media screen and (min-width: 1368px) {
+  #nav {
+    float: left;
+    width: 32.5%;
+  }
+}</code></pre></section>
+
+<!-- GRIDS & LAYOUTS -->
+
+<section><h1>Grids</h1></section>
+
+<section><h3>Grids</h3>
+  <p>Organizing content in boxes and placing them in a grid not only makes for a cleaner design, but also helps with
+    adapting to different screen sizes.</p>
+  </section>
+  
+<section class="full-vertical white" data-background="url(md/16_responsive/oecd-rwb-boxes2.png)">
+<a class="source" href="http://oecdregionalwellbeing.org" target="_blank"><p>OECD Regional Well-Being</p></a>
+</section>
+
+<section><h3>Grids</h3>
+  <p>There are various CSS frameworks supporting grids out there. The bigger ones are Twitter's <a href="https://getbootstrap.com/" target="_blank">Bootstrap</a>
+    and Zurb's <a href="https://foundation.zurb.com/" target="_blank">Foundation</a>.</p>
+</section>
+
+<section><h3>Grids</h3>
+  <p>Let's have a look at Bootstrap's grids:</p>
+  <a href="https://getbootstrap.com/docs/4.0/examples/grid/" target="_blank"><p>Bootstrap grid examples</p></a>
+</section>
+
+<!-- SVG VIEWPORTS -->
+
+<section><h1>SVG Techniques</h1></section>
+
+<section><h3>SVG Techniques</h3>
+  <p>As the name implies, SVG are scalable, which makes them automatically look nice on various types of devices.</p>
+</section>
+
+<section><h3>SVG Techniques</h3>
+  <p>You can fine-tune the scaling using the SVG viewBox and preserveAspectRatio attributes:</p>
+<pre><code class="html">&lt;svg width="600" height="400"
+  viewBox="0 0 200 200"
+  preserveAspectRatio="xMinYMax meet" /&gt;
+</code></pre>
+<p>Let's look at code/responsive/01_svg_viewbox.html</p>
+</section>
+
+<!-- INTERACTION -->
+
+<section><h1>Interaction</h1></section>
+
+<section><h3>Interaction</h3>
+  <p>Touch input has different event handlers. But they work just like their mouse counterparts.</p>
+<pre><code class="javascript">circle.on('touchstart', ...)
+  .on('touchmove', ...)
+  .on('touchend', ...);
+</code></pre>
+</section>
+
+<section class="full-vertical white" data-background="url(md/16_responsive/tap_size_apple.png)">
+<a class="source" href="https://developer.apple.com/library/ios/documentation/userexperience/conceptual/mobilehig/LayoutandAppearance.html" target="_blank"><p>Apple: Human Interface Guidelines</p></a>
+</section>
+
+<section><h3>Interaction</h3>
+  <p>Mobile browsers have to juggle touch-to-scroll with touch-to-interact. If you have a fullscreen
+    page anyway, consider disabling scrolling:</p>
+<pre><code class="javascript">document.ontouchstart = 
+  function(e){
+    e.preventDefault();
+  };
+</code></pre>
+</section>
+
+<section><h3>Interaction</h3>
+  <p>Consider adding enlarged (invisible) touch areas:</p>
+  <img data-src="md/16_responsive/invisible-touch.png" style="width:50%" />
+</section>
+
+<section><h3>Interaction</h3>
+  <img data-src="md/16_responsive/invisible-touch.png" style="width:50%" />
+  <pre><code class="css">.touch-help {
+    opacity: 0;
+    z-index: 99999;
+}</code></pre>
+</section>
+
+<section><h3>Interaction</h3>
+  <p>... or even take over interactivity completely:</p>
+  <img data-src="md/16_responsive/invisible-touch-2.png" style="width:50%" />
+</section>
+
+<section><h3>Interaction</h3>
+  <img data-src="md/16_responsive/invisible-touch-2.png" style="width:50%" />
+  <pre><code class="javascript">touchHelpers.on('touchstart', function(){
+  console.log(d3.touches(this));
+  // => [342.1, 283.5]
+});
+  </code></pre>
+</section>
+
+<section><h1>Tooltips</h1></section>
+
+<section><h3>Tooltips</h3>
+  <p>Tooltips are pretty useful for data exploration - we don't want to lose them on mobile!</p>
+</section>
+
+<section><h3>Tooltips</h3>
+  <p>One solution: have a <code>position: fixed</code> tooltip at the bottom!</p>
+  <img data-src="md/16_responsive/nyt3_rent.png" style="height:50%"/>
+</section>
+
+<section><h3>Tooltips</h3>
+<p>Two-step interaction: tap once to open, tap again to click, tap anywhere to close.</p>
+  <img data-src="md/16_responsive/oecd_tooltips.png" style="height:50%"/>
+<a class="source" href="http://oecdregionalwellbeing.org" target="_blank"><p>OECD Regional Well-Being</p></a>
+</section>
+
+
+<section><h1>Sensors</h1></section>
+
+
+<section><h3>Sensors</h3>
+  <p>Mobile devices also have upsides: cool sensors!</p>
+</section>
+
+<section><h3>Sensors</h3>
+  <p>Geolocation:</p>
+  <pre><code class="javascript">navigator.geolocation.getCurrentPosition(
+      function(position){
+         console.log(
+            position.coords.latitude +
+            "," + position.coords.longitude
+         );
+      }
+   );
+    </code></pre>
+  </section>
+  
+<section><h3>Sensors</h3>
+  <p>Geolocation:</p>
+  <img data-src="md/16_responsive/oecd-rwb-geo1.png" />
+  <img data-src="md/16_responsive/oecd-rwb-geo2.png" />
+  <img data-src="md/16_responsive/oecd-rwb-geo3.png" />
+<a class="source" href="http://oecdregionalwellbeing.org" target="_blank"><p>OECD Regional Well-Being</p></a>
+</section>
+
+<section><h3>Sensors</h3>
+  <p><b>Multitouch/Gestural interactions</b>: Supported by most d3 behaviors out of the box.</p>
+  <a href="https://bl.ocks.org/mbostock/2a39a768b1d4bc00a09650edef75ad39/fcb55a7c2d4309c7e5037095bdd20851b27fe565" target="_blank"><p>Mike Bostock: Pan & Zoom IV</p></a>
+  <a href="https://bl.ocks.org/mbostock/9669633" target="_blank"><p>Mike Bostock: Multitouch II</p></a>
+</section>
+
+<section><h3>Sensors</h3>
+  <p>You can also use a dedicated gesture library like <a href="https://github.com/soyjavi/QuoJS" target="_blank">QuoJS</a> or <a href="https://hammerjs.github.io/" target="_blank">HammerJS</a> to support fancier interactions.</p>
+</section>
+
+<section><h3>Sensors</h3>
+  <p><b>Gyroscopes/Accelerometers</b></p>
+<pre><code class="javascript">window.addEventListener(
+    "deviceorientation",
+    function(orientation){
+       console.log(orientation.alpha +
+       "," + orientation.beta +
+       "," + orientation.gamma
+       );
+    },
+    true
+ );
+  </code></pre> 
+</section>
+
+<section><h3>Sensors</h3>
+  <p>Check out code/responsive/02_bluemarble.html for a demo.</p>
+</section>
+
+<!-- TRICKS: DEBOUNCE ON REDRAW, HIDDEN TOUCH PANELS, STATIC TOOLTIPS, -->
+
+<!-- MORE (RESPONSIVE) -->
+<section><h3>More</h3>
+  <a href="http://responsivedatavisualization.com/" target="_blank"><p>Bill Hinderman: Building Responsive Data Visualization for the Web</p></a>
+</section>
+
+<!-- PERFORMANCE -->
+<section><h1>Performance</h1></section>
+
+<section><h3>Performance</h3>
+  <p>Speaking about responsiveness, oftentimes we bind redraw handler to the resize event:</p>
+<pre><code class="javascript">window.on('resize', redraw);</code></pre>
+</section>
+
+<section><h3>Performance</h3>
+  <p>This can lead to A LOT of redraws. Consider using some way of debouncing:</p>
+<pre><code class="javascript">window.on('resize', _.debounce(redraw, 300))</code></pre>
+</section>
+
+<section><h3>Performance</h3>
+  <p>Use <code>requestAnimationFrame</code> instead of <code>setTimeout</code>.</p>
+</section>
+
+<section><h3>Performance</h3>
+  <p>Sometimes: canvas/WebGL can be faster than SVG (usually with really massive amounts of shapes/animations).</p>
+</section>
+
+<section><h3>Performance</h3>
+  <p>Plus all the other details:</p>
+  <ul><li>put scripts, styles last</li>
+    <li>minify your code/images</li>
+    <li>...</li>
+  </ul>
+</section>
+
+<!-- MORE (PERFORMANCE) -->
