@@ -7,7 +7,7 @@
 
 <section>
     <p>Let's start with a simple example:</p>
-    <pre><code>var myArray = [2,4,5,10];
+    <pre><code class="javascript">var myArray = [2,4,5,10];
 /* how to get a new array with 
 each number multiplied by 3? */    
     </code></pre>
@@ -15,7 +15,7 @@ each number multiplied by 3? */
 
 <section>
     <p>Something more interesting:</p>
-    <pre><code>var myArray = [2,4,5,10];
+    <pre><code class="javascript">var myArray = [2,4,5,10];
 /* how to get a new array with 
 each EVEN number divided by 2? */
     </code></pre>
@@ -23,7 +23,7 @@ each EVEN number divided by 2? */
 
 <section>
     <p>Something even more interesting:</p>
-    <pre><code>var myArray = [2,4,5,10];
+    <pre><code class="javascript">var myArray = [2,4,5,10];
 /* create an array of objects containing:
    NUM: original_number,
    SQUARED: original_number_squared
@@ -51,7 +51,7 @@ each EVEN number divided by 2? */
 
 <section>
     <h3>JS: sort</h3>
-    <pre><code>console.log([4,2,3,1].sort());
+    <pre><code class="javascript">console.log([4,2,3,1].sort());
     </code></pre>
     <pre>
 => [1,2,3,4]        
@@ -68,7 +68,7 @@ each EVEN number divided by 2? */
 
 <section>
 <h3>JS: sort</h3>
-<pre><code>console.log([4,2,3,1].sort(
+<pre><code class="javascript">console.log([4,2,3,1].sort(
     function(a, b){
         return b - a;
     }
@@ -86,7 +86,7 @@ each EVEN number divided by 2? */
 
 <section>
   <h3>JS: forEach</h3>
-  <pre><code>[1,2,3,4].forEach(
+  <pre><code class="javascript">[1,2,3,4].forEach(
 function(d){
 console.log(d * 2);
 });
@@ -107,7 +107,7 @@ console.log(d * 2);
   
 <section>
     <h3>JS: map</h3>
-    <pre><code>var roots = [1,2,3,4].map(
+    <pre><code class="javascript">var roots = [1,2,3,4].map(
 function(d){
   return Math.sqrt(d);
 });
@@ -125,7 +125,7 @@ console.log(roots);
   
 <section>
     <h3>JS: filter</h3>
-    <pre><code>var evens = [1,2,3,4].filter(
+    <pre><code class="javascript">var evens = [1,2,3,4].filter(
 function(d){
   return d % 2 === 0;
 });
@@ -143,7 +143,7 @@ console.log(evens);
       
     <section>
         <h3>JS: reduce</h3>
-        <pre><code>var sum = [1,2,3,4].reduce(
+        <pre><code class="javascript">var sum = [1,2,3,4].reduce(
     function(acc, val){
         return acc + val;
     },
@@ -151,7 +151,7 @@ console.log(evens);
 console.log(sum);
         </code></pre>
         <pre>
-    => 10 /* 1 + 2 + 3 + 4
+    => 10 // == 1 + 2 + 3 + 4
         </pre>
 </section>
 
@@ -165,7 +165,7 @@ console.log(sum);
 
 <section>
     <h3>JS: Object.keys</h3>
-    <pre><code>var obj = { 'a': 4, 'b': 12, 'c': 36 };
+    <pre><code class="javascript">var obj = { 'a': 4, 'b': 12, 'c': 36 };
 console.log(Object.keys(obj));
     </code></pre>
     <pre>
@@ -180,7 +180,7 @@ console.log(Object.keys(obj));
 
 <section>
     <h3>JS: Object.values</h3>
-    <pre><code>var obj = { 'a': 4, 'b': 12, 'c': 36 };
+    <pre><code class="javascript">var obj = { 'a': 4, 'b': 12, 'c': 36 };
 console.log(Object.values(obj));
     </code></pre>
     <pre>
@@ -195,7 +195,7 @@ console.log(Object.values(obj));
     <h3>Javascript chaining</h3>
     <p>Each of the previous functions returns the result of its computation.<br/>
     So you can <b>chain</b> them to have the next function work with the previous one's results:</p>
-    <pre><code>var result = arr.filter(...)
+    <pre><code class="javascript">var result = arr.filter(...)
     .map(...)
     .reduce(...);
     </code>
@@ -208,7 +208,7 @@ console.log(Object.values(obj));
     <h3>ES6 Arrow functions</h3>
     <p>(ECMAScript 6), the latest, widely-distributed version of Javascript allows a short-hand
         writing for functions using arrows:</p>
-<pre><code>var myFunc = function(a){
+<pre><code class="javascript">var myFunc = function(a){
     return a * 2;
 }
 // becomes:
@@ -222,7 +222,7 @@ var myFunc = a => a * 2;
 <section>
     <p>Arrow functions make declarative calls even shorter:</p>
 <pre>
-<code>var arr = [1,5,14,28];
+<code class="javascript">var arr = [1,5,14,28];
 
 arr.filter(d => d % 2 === 0)
     .map(d => d * 2)
@@ -243,14 +243,14 @@ arr.filter(d => d % 2 === 0)
 
 <section>
     <h3>Lodash _.without</h3>
-    <pre><code>_.without([2, 1, 2, 3], 1, 2);
+    <pre><code class="javascript">_.without([2, 1, 2, 3], 1, 2);
 // => [3]
     </code></pre>
 </section>
 
 <section>
     <h3>Lodash _.keyBy</h3>
-    <pre><code>var array = [
+    <pre><code class="javascript">var array = [
 { 'dir': 'left', 'code': 97 },
 { 'dir': 'right', 'code': 100 }
 ];

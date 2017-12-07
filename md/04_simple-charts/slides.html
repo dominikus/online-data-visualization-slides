@@ -66,6 +66,15 @@
     <ul>
   </section>
 
+  <!-- start with the code -->
+
+<section><h1>Code examples</h1></section>
+
+<section><h3>Code examples</h3>
+  <p>Since we're starting with the code now: you can find all the examples on github:<br/>
+    <a href="https://github.com/dominikus/online-data-visualization" target="_blank"><p>https://github.com/dominikus/online-data-visualization</p></a>
+  </section>
+
 <!-- Taucharts -->
 
 <section><h1>Taucharts</h1></section>
@@ -78,22 +87,21 @@
 
 <section>
   <h3>Taucharts Basics</h3>
-  <pre><code>
-<script
+  <pre><code class="html">&lt;script
  src="https://cdn.jsdelivr.net/d3js/3.5.17/d3.min.js"
- charset="utf-8"></script>
-<script
+ charset="utf-8"&gt;&lt;/script&gt;
+&lt;script
  src="https://cdn.jsdelivr.net/npm/taucharts@1/build/production/tauCharts.min.js"
- type="text/javascript"></script>
+ type="text/javascript"&gt;&lt;/script&gt;
 
-<link rel="stylesheet" type="text/css"
- href="https://cdn.jsdelivr.net/npm/taucharts@1/build/production/tauCharts.min.css">
+&lt;link rel="stylesheet" type="text/css"
+ href="https://cdn.jsdelivr.net/npm/taucharts@1/build/production/tauCharts.min.css"&gt;
   </code></pre>
 </section>
 
 <section>
   <h3>Taucharts Basics II</h3>
-  <pre><code>var chart = new tauCharts.Chart({
+  <pre><code clas="javascript">var chart = new tauCharts.Chart({
       data: defData,
       type: 'bar',
       x: 'date',
@@ -118,7 +126,7 @@
 
 <section><h3>fetch API</h3>
   <p>Basic syntax (text):</p>
-  <pre><code>fetch(remoteURL)
+  <pre><code class="javascript">fetch(remoteURL)
   .then(function(result){
     return result.text();
   })
@@ -130,7 +138,7 @@
 
 <section><h3>fetch API</h3>
   <p>Basic syntax (JSON):</p>
-  <pre><code>fetch(remoteURL)
+  <pre><code class="javascript">fetch(remoteURL)
   .then(function(result){
     return result.json();
   })
