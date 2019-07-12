@@ -1,5 +1,4 @@
-@import url(../../lib/font/source-sans-pro/source-sans-pro.css);
-@import url("https://fonts.googleapis.com/css?family=Karla|Space+Mono");
+@import url("https://fonts.googleapis.com/css?family=Karla|Space+Mono|Source+Sans+Pro");
 .reveal section {
   width: 1280px;
   height: 720px; }

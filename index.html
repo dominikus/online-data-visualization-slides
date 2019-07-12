@@ -99,7 +99,7 @@
 				dependencies: [
 					{ src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.5.0/plugin/markdown/marked.js' },
 					{ src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.5.0/plugin/markdown/markdown.js' },
-					{ src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.5.0/plugin/external/external.js', condition: function() { return !!document.querySelector( '[data-external]' ); } },
+					{ src: 'assets/js/external/external.js', condition: function() { return !!document.querySelector( '[data-external]' ); } },
 					{ src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.5.0/plugin/notes/notes.js', async: true },
 					{ src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.5.0/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
 				]
